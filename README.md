@@ -21,12 +21,13 @@ The library is developed in Dymola but also works in other Modelica tools (teste
 
 ## Development and contribution
 The library was developed by LTX Simulation GmbH
+
 Contributors:
 - Matthias Schaefer
 
-You may report any issues with using the [Issues](https://gitlab.com/ltx1/ScalableTranslationStatistics/-/issues) button.
+You may report any issues with using the [Issues](./issues) button.
 
-Contributions as [Merge Requests](https://gitlab.com/ltx1/ScalableTranslationStatistics/-/merge_requests) are always welcome.
+Contributions as [Pull Requests](./pulls) are always welcome.
 
 ## Legal
 For the conditions of usage of the ScalableTransationStatistics library please see [License Conditions](./License.md)
