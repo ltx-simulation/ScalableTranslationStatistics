@@ -25,9 +25,9 @@ The library was developed by LTX Simulation GmbH
 Contributors:
 - Matthias Schaefer
 
-You may report any issues with using the [Issues](./issues) button.
+You may report any issues with using the [Issues](https://github.com/ltx-simulation/ScalableTranslationStatistics/issues) button.
 
-Contributions as [Pull Requests](./pulls) are always welcome.
+Contributions as [Pull Requests](https://github.com/ltx-simulation/ScalableTranslationStatistics/pulls) are always welcome.
 
 ## Legal
 For the conditions of usage of the ScalableTransationStatistics library please see [License Conditions](./License.md)
