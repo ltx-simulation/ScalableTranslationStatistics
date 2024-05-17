@@ -1,0 +1,11 @@
+model dsmodelIterationSelect
+  extends ScalableTranslationStatistics.Fluid.Examples.ScalableHydraulics;
+  annotation(__Dymola_SimulationIterationVariables={"nLSystem[2].parallelResistors.pressureLossTube[5].mdot",
+   "nLSystem[2].parallelResistors.pressureLossTube[4].mdot", "nLSystem[2].parallelResistors.pressureLossTube[3].mdot",
+   "nLSystem[2].parallelResistors.pressureLossTube[2].mdot", "nLSystem[1].numeric_pump.vdot",
+   "nLSystem[3].parallelResistors.pressureLossTube[3].mdot", "nLSystem[3].parallelResistors.pressureLossTube[2].mdot",
+   "nLSystem[2].numeric_pump.vdot", "nLSystem[1].parallelResistors.pressureLossTube[2].mdot",
+   "nLSystem[1].parallelResistors.pressureLossTube[1].mdot", "parallelResistors.pressureLossTube[4].mdot",
+   "parallelResistors.pressureLossTube[3].mdot", "parallelResistors.pressureLossTube[2].mdot",
+   "parallelResistors.pressureLossTube[1].mdot"});
+end dsmodelIterationSelect;

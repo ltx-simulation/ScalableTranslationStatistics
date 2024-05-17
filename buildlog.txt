@@ -1,0 +1,148 @@
+ 
+Compiling and linking the model (Visual C++). 
+ 
+64-bit mode activated. 
+dsmodel.c(41,14): warning: variable 'M0_0' set but not used [-Wunused-but-set-variable]
+    double   M0_0;
+             ^
+dsmodel.c(42,14): warning: variable 'R0_0' set but not used [-Wunused-but-set-variable]
+    double   R0_0;
+             ^
+dsmodel.c(43,14): warning: variable 'T0_0' set but not used [-Wunused-but-set-variable]
+    double   T0_0;
+             ^
+dsmodel.c(262,1): warning: variable 'lambda_' set but not used [-Wunused-but-set-variable]
+NonLinearSystemOfEquationsNH(Jacobian__, residue__, x__, 5, 0, 1, 1, 2, 4, 
+^
+C:/Program Files/Dymola 2024x Refresh 1\source\moutil.c(491,2): note: expanded from macro 'NonLinearSystemOfEquationsNH'
+        NonLinearSystemOfEquationsCommon(Jac, res, x, n, nextra, numericJacobian, nr, base, nin, hv, nhv, iv, niv, \
+        ^
+C:/Program Files/Dymola 2024x Refresh 1\source\moutil.c(441,9): note: expanded from macro 'NonLinearSystemOfEquationsCommon'
+        double lambda_=-2;\
+               ^
+dsmodel.c(262,1): warning: variable 'changePmatrixOld_' set but not used [-Wunused-but-set-variable]
+C:/Program Files/Dymola 2024x Refresh 1\source\moutil.c(491,2): note: expanded from macro 'NonLinearSystemOfEquationsNH'
+        NonLinearSystemOfEquationsCommon(Jac, res, x, n, nextra, numericJacobian, nr, base, nin, hv, nhv, iv, niv, \
+        ^
+C:/Program Files/Dymola 2024x Refresh 1\source\moutil.c(448,6): note: expanded from macro 'NonLinearSystemOfEquationsCommon'
+        int changePmatrixOld_=0;\
+            ^
+dsmodel.c(262,1): warning: unused variable 'DAEModeDummyJacobian' [-Wunused-variable]
+C:/Program Files/Dymola 2024x Refresh 1\source\moutil.c(491,2): note: expanded from macro 'NonLinearSystemOfEquationsNH'
+        NonLinearSystemOfEquationsCommon(Jac, res, x, n, nextra, numericJacobian, nr, base, nin, hv, nhv, iv, niv, \
+        ^
+C:/Program Files/Dymola 2024x Refresh 1\source\moutil.c(451,6): note: expanded from macro 'NonLinearSystemOfEquationsCommon'
+        int DAEModeDummyJacobian = 0;\
+            ^
+dsmodel.c(262,1): warning: unused variable 'Jacobian____m' [-Wunused-variable]
+C:/Program Files/Dymola 2024x Refresh 1\source\moutil.c(493,3): note: expanded from macro 'NonLinearSystemOfEquationsNH'
+                DeclareJacobianDense1(Jac, n, nextra, hv, nhv, iv, niv, nin), \
+                ^
+C:/Program Files/Dymola 2024x Refresh 1\source\moutil.c(409,2): note: expanded from macro 'DeclareJacobianDense1'
+        DeclareDidRealMatrix1(Jac, n, n, hv); \
+        ^
+C:/Program Files/Dymola 2024x Refresh 1\source\matrixop.h(553,12): note: expanded from macro 'DeclareDidRealMatrix1'
+static int Mat##__m=r
+           ^
+<scratch space>(18,1): note: expanded from here
+Jacobian____m
+^
+dsmodel.c(388,1): warning: variable 'lambda_' set but not used [-Wunused-but-set-variable]
+NonLinearSystemOfEquationsNH(Jacobian__, residue__, x__, 3, 0, 1, 2, 7, 4, 
+^
+C:/Program Files/Dymola 2024x Refresh 1\source\moutil.c(491,2): note: expanded from macro 'NonLinearSystemOfEquationsNH'
+        NonLinearSystemOfEquationsCommon(Jac, res, x, n, nextra, numericJacobian, nr, base, nin, hv, nhv, iv, niv, \
+        ^
+C:/Program Files/Dymola 2024x Refresh 1\source\moutil.c(441,9): note: expanded from macro 'NonLinearSystemOfEquationsCommon'
+        double lambda_=-2;\
+               ^
+dsmodel.c(388,1): warning: variable 'changePmatrixOld_' set but not used [-Wunused-but-set-variable]
+C:/Program Files/Dymola 2024x Refresh 1\source\moutil.c(491,2): note: expanded from macro 'NonLinearSystemOfEquationsNH'
+        NonLinearSystemOfEquationsCommon(Jac, res, x, n, nextra, numericJacobian, nr, base, nin, hv, nhv, iv, niv, \
+        ^
+C:/Program Files/Dymola 2024x Refresh 1\source\moutil.c(448,6): note: expanded from macro 'NonLinearSystemOfEquationsCommon'
+        int changePmatrixOld_=0;\
+            ^
+dsmodel.c(388,1): warning: unused variable 'DAEModeDummyJacobian' [-Wunused-variable]
+C:/Program Files/Dymola 2024x Refresh 1\source\moutil.c(491,2): note: expanded from macro 'NonLinearSystemOfEquationsNH'
+        NonLinearSystemOfEquationsCommon(Jac, res, x, n, nextra, numericJacobian, nr, base, nin, hv, nhv, iv, niv, \
+        ^
+C:/Program Files/Dymola 2024x Refresh 1\source\moutil.c(451,6): note: expanded from macro 'NonLinearSystemOfEquationsCommon'
+        int DAEModeDummyJacobian = 0;\
+            ^
+dsmodel.c(388,1): warning: unused variable 'Jacobian____m' [-Wunused-variable]
+C:/Program Files/Dymola 2024x Refresh 1\source\moutil.c(493,3): note: expanded from macro 'NonLinearSystemOfEquationsNH'
+                DeclareJacobianDense1(Jac, n, nextra, hv, nhv, iv, niv, nin), \
+                ^
+C:/Program Files/Dymola 2024x Refresh 1\source\moutil.c(409,2): note: expanded from macro 'DeclareJacobianDense1'
+        DeclareDidRealMatrix1(Jac, n, n, hv); \
+        ^
+C:/Program Files/Dymola 2024x Refresh 1\source\matrixop.h(553,12): note: expanded from macro 'DeclareDidRealMatrix1'
+static int Mat##__m=r
+           ^
+<scratch space>(95,1): note: expanded from here
+Jacobian____m
+^
+dsmodel.c(467,1): warning: variable 'lambda_' set but not used [-Wunused-but-set-variable]
+NonLinearSystemOfEquationsNH(Jacobian__, residue__, x__, 2, 0, 0, 3, 10, 1, 
+^
+C:/Program Files/Dymola 2024x Refresh 1\source\moutil.c(491,2): note: expanded from macro 'NonLinearSystemOfEquationsNH'
+        NonLinearSystemOfEquationsCommon(Jac, res, x, n, nextra, numericJacobian, nr, base, nin, hv, nhv, iv, niv, \
+        ^
+C:/Program Files/Dymola 2024x Refresh 1\source\moutil.c(441,9): note: expanded from macro 'NonLinearSystemOfEquationsCommon'
+        double lambda_=-2;\
+               ^
+dsmodel.c(467,1): warning: variable 'changePmatrixOld_' set but not used [-Wunused-but-set-variable]
+C:/Program Files/Dymola 2024x Refresh 1\source\moutil.c(491,2): note: expanded from macro 'NonLinearSystemOfEquationsNH'
+        NonLinearSystemOfEquationsCommon(Jac, res, x, n, nextra, numericJacobian, nr, base, nin, hv, nhv, iv, niv, \
+        ^
+C:/Program Files/Dymola 2024x Refresh 1\source\moutil.c(448,6): note: expanded from macro 'NonLinearSystemOfEquationsCommon'
+        int changePmatrixOld_=0;\
+            ^
+dsmodel.c(467,1): warning: unused variable 'Jacobian____m' [-Wunused-variable]
+C:/Program Files/Dymola 2024x Refresh 1\source\moutil.c(493,3): note: expanded from macro 'NonLinearSystemOfEquationsNH'
+                DeclareJacobianDense1(Jac, n, nextra, hv, nhv, iv, niv, nin), \
+                ^
+C:/Program Files/Dymola 2024x Refresh 1\source\moutil.c(409,2): note: expanded from macro 'DeclareJacobianDense1'
+        DeclareDidRealMatrix1(Jac, n, n, hv); \
+        ^
+C:/Program Files/Dymola 2024x Refresh 1\source\matrixop.h(553,12): note: expanded from macro 'DeclareDidRealMatrix1'
+static int Mat##__m=r
+           ^
+<scratch space>(162,1): note: expanded from here
+Jacobian____m
+^
+dsmodel.c(549,1): warning: variable 'lambda_' set but not used [-Wunused-but-set-variable]
+NonLinearSystemOfEquationsNH(Jacobian__, residue__, x__, 4, 0, 0, 4, 12, 2, 
+^
+C:/Program Files/Dymola 2024x Refresh 1\source\moutil.c(491,2): note: expanded from macro 'NonLinearSystemOfEquationsNH'
+        NonLinearSystemOfEquationsCommon(Jac, res, x, n, nextra, numericJacobian, nr, base, nin, hv, nhv, iv, niv, \
+        ^
+C:/Program Files/Dymola 2024x Refresh 1\source\moutil.c(441,9): note: expanded from macro 'NonLinearSystemOfEquationsCommon'
+        double lambda_=-2;\
+               ^
+dsmodel.c(549,1): warning: variable 'changePmatrixOld_' set but not used [-Wunused-but-set-variable]
+C:/Program Files/Dymola 2024x Refresh 1\source\moutil.c(491,2): note: expanded from macro 'NonLinearSystemOfEquationsNH'
+        NonLinearSystemOfEquationsCommon(Jac, res, x, n, nextra, numericJacobian, nr, base, nin, hv, nhv, iv, niv, \
+        ^
+C:/Program Files/Dymola 2024x Refresh 1\source\moutil.c(448,6): note: expanded from macro 'NonLinearSystemOfEquationsCommon'
+        int changePmatrixOld_=0;\
+            ^
+dsmodel.c(549,1): warning: unused variable 'Jacobian____m' [-Wunused-variable]
+C:/Program Files/Dymola 2024x Refresh 1\source\moutil.c(493,3): note: expanded from macro 'NonLinearSystemOfEquationsNH'
+                DeclareJacobianDense1(Jac, n, nextra, hv, nhv, iv, niv, nin), \
+                ^
+C:/Program Files/Dymola 2024x Refresh 1\source\moutil.c(409,2): note: expanded from macro 'DeclareJacobianDense1'
+        DeclareDidRealMatrix1(Jac, n, n, hv); \
+        ^
+C:/Program Files/Dymola 2024x Refresh 1\source\matrixop.h(553,12): note: expanded from macro 'DeclareDidRealMatrix1'
+static int Mat##__m=r
+           ^
+<scratch space>(228,1): note: expanded from here
+Jacobian____m
+^
+17 warnings generated.
+   Bibliothek "dymosim.lib" und Objekt "dymosim.exp" werden erstellt.
+ 
+Successful generation of Dymosim. 
+ 
