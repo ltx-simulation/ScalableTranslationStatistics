@@ -1,19 +1,19 @@
-within ScalableTranslationStatistics.Fluid.Components;
+within ScalableTranslationStatistics.Fluid.Components.AssembledComponents;
 model TubePumpNetwork
   parameter Integer numNLequations = 3;
   parameter Boolean withNumericJacobian = false;
 
   Components.TwoPortVolume volume
     annotation (Placement(transformation(extent={{0,-10},{20,10}})));
-  Components.PressureIncreasePump analytic_pump(redeclare replaceable
-      function CalcDensity = Media.CalcDensitySimple)
-    if not withNumericJacobian annotation (Placement(transformation(
+  NonlinearComponents.PressureIncreasePump analytic_pump(redeclare replaceable
+      function CalcDensity = Media.CalcDensitySimple) if not
+    withNumericJacobian annotation (Placement(transformation(
         extent={{15,-16},{-15,16}},
         rotation=180,
         origin={55,3.55271e-15})));
-    Components.PressureIncreasePump numeric_pump(redeclare replaceable
-      function CalcDensity = Media.AssertedDensity)
-    if withNumericJacobian annotation (Placement(transformation(
+  NonlinearComponents.PressureIncreasePump numeric_pump(redeclare replaceable
+      function CalcDensity = Media.AssertedDensity) if withNumericJacobian
+    annotation (Placement(transformation(
         extent={{15,-16},{-15,16}},
         rotation=180,
         origin={55,3.55271e-15})));

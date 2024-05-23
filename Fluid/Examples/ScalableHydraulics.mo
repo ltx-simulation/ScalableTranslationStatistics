@@ -4,29 +4,29 @@ model ScalableHydraulics "Scale Nonlinear Systems of euqations for a liquid circ
   parameter Integer numNLequations[:] = {2,5,3,4} "sizes of each nonlinear system of equations";
   parameter Integer numJacobians = 2 "number of numerical Jacobians to be inserted (maximum: number of nonlinear equation systems -1)";
 
-  Components.ParallelResistors parallelResistors(nParallel=
+  Components.AssembledComponents.ParallelResistors parallelResistors(nParallel=
         numNLequations[end])
     annotation (Placement(transformation(extent={{16,-84},{44,-56}})));
   Modelica.Blocks.Sources.RealExpression realExpression(y=100)
-  annotation (Placement(transformation(extent={{-46,40},{-26,60}})));
-  Components.PressureIncreasePump pressureIncreasePump3(
-      redeclare function CalcDensity =
-        Media.CalcDensitySimple) annotation (Placement(
-        transformation(
+  annotation (Placement(transformation(extent={{-48,40},{-28,60}})));
+  Components.NonlinearComponents.PressureIncreasePump pressureIncreasePump3(
+      redeclare function CalcDensity = Media.CalcDensitySimple) annotation (
+      Placement(transformation(
         extent={{-16,16},{16,-16}},
         rotation=180,
         origin={2,20})));
-  Components.Boundary_Pressure boundary_Pressure annotation
-    (Placement(transformation(
+  Components.Boundaries.Boundary_Pressure boundary_Pressure annotation (
+      Placement(transformation(
         extent={{10,-10},{-10,10}},
         rotation=90,
         origin={60,34})));
-  Components.TubePumpNetwork[numNLequationSystems - 1] nLSystem(
-      numNLequations=numNLequations[1:end - 1], withNumericJacobian=
-        insertJacobian) annotation (Placement(transformation(rotation=0,
-          extent={{-54,-98},{2,-42}})));
+  Components.AssembledComponents.TubePumpNetwork[numNLequationSystems - 1]
+    nLSystem(numNLequations=numNLequations_sys, withNumericJacobian=
+        insertJacobian) annotation (Placement(transformation(rotation=0, extent
+          ={{-54,-98},{2,-42}})));
 
 protected
+  parameter Integer numNLequations_sys[:] = numNLequations[1:end-1];
   parameter Integer numNLequationSystems=size(numNLequations,1);
   parameter Integer numberNumericJacobians = min([numJacobians,numNLequationSystems-1]);
   parameter Boolean[numNLequationSystems-1] insertJacobian = cat(1,fill(true,numberNumericJacobians), fill(false,numNLequationSystems-numberNumericJacobians-1));
@@ -37,7 +37,7 @@ connect(nLSystem[i].fluidPortIn,nLSystem[i-1].fluidPortOut);
   end for;
 
   connect(realExpression.y, pressureIncreasePump3.n)
-    annotation (Line(points={{-25,50},{2,50},{2,37.28}},  color={0,0,127}));
+    annotation (Line(points={{-27,50},{2,50},{2,37.28}},  color={0,0,127}));
   connect(parallelResistors.fluidPortOut, boundary_Pressure.fluidPortOut)
     annotation (Line(points={{44.28,-70},{60,-70},{60,24}},  color={102,44,145}));
   connect(boundary_Pressure.fluidPortOut, pressureIncreasePump3.fluidPortIn)

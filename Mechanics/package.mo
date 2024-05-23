@@ -1,5 +1,5 @@
 within ScalableTranslationStatistics;
-package Mechanics
+package Mechanics "mechanical representation of scalable translation statistics"
 
 annotation(Icon(coordinateSystem(preserveAspectRatio=false), graphics={
         Ellipse(
@@ -88,52 +88,6 @@ annotation(Icon(coordinateSystem(preserveAspectRatio=false), graphics={
           fillPattern=FillPattern.Solid,
           rotation=-36,
           origin={-12,22})}),
-      Diagram(coordinateSystem(preserveAspectRatio=false)),
-              Icon(graphics={
-        Ellipse(
-          extent={{-66,-42},{-36,-70}},
-          lineColor={0,0,0},
-          fillColor={255,255,255},
-          fillPattern=FillPattern.Solid,
-          startAngle=0,
-          endAngle=360,
-          lineThickness=0.5),
-        Ellipse(
-          extent={{36,-42},{66,-70}},
-          lineColor={0,0,0},
-          fillColor={255,255,255},
-          fillPattern=FillPattern.Solid,
-          startAngle=0,
-          endAngle=360,
-          lineThickness=0.5)}),
-        Diagram(graphics={Ellipse(
-          extent={{-32,-20},{-14,-38}},
-          lineColor={0,0,0},
-          startAngle=0,
-          endAngle=360,
-          fillColor={0,0,0},
-          fillPattern=FillPattern.Solid),
-                          Ellipse(
-          extent={{-29,-23},{-17,-35}},
-          lineColor={0,0,0},
-          startAngle=0,
-          endAngle=360,
-          fillColor={255,255,255},
-          fillPattern=FillPattern.Solid),
-                          Ellipse(
-          extent={{16,-20},{34,-38}},
-          lineColor={0,0,0},
-          startAngle=0,
-          endAngle=360,
-          fillColor={0,0,0},
-          fillPattern=FillPattern.Solid),
-                          Ellipse(
-          extent={{19,-23},{31,-35}},
-          lineColor={0,0,0},
-          startAngle=0,
-          endAngle=360,
-          fillColor={255,255,255},
-          fillPattern=FillPattern.Solid)}),
     Documentation(info="<html>
 <p>In this Modelica model the user can determine most of the measures given in Dymola&lsquo;s translation statistics of the translated model (such as the size of nonlinear equation systems).</p>
 <p>The model is built in the physical domain of mechanics</p>
@@ -173,5 +127,92 @@ annotation(Icon(coordinateSystem(preserveAspectRatio=false), graphics={
 <li><p><b><i>compilerType:</i></b> Type of the c-compiler used (\"1\" for Visual Studio and \"2\" for gcc). This information is necessary because the implementation of the sleeping routine depends on the compiler </p></li>
 
 </ul>
-</html>"));
+</html>"),
+    Diagram(graphics={
+        Ellipse(
+          extent={{-60,60},{60,-60}},
+          lineColor={0,0,0},
+          lineThickness=0.5,
+          fillColor={255,255,255},
+          fillPattern=FillPattern.Solid,
+          startAngle=0,
+          endAngle=360),
+        Polygon(
+          points={{-14,58},{-6,78},{6,78},{14,58},{-14,58}},
+          lineColor={0,0,0},
+          lineThickness=0.5,
+          fillColor={255,255,255},
+          fillPattern=FillPattern.Solid),
+        Polygon(
+          points={{-14,-100},{-6,-80},{6,-80},{14,-100},{-14,-100}},
+          lineColor={0,0,0},
+          lineThickness=0.5,
+          fillColor={255,255,255},
+          fillPattern=FillPattern.Solid,
+          rotation=36,
+          origin={-94,128}),
+        Polygon(
+          points={{-14,-100},{-6,-80},{6,-80},{14,-100},{-14,-100}},
+          lineColor={0,0,0},
+          lineThickness=0.5,
+          fillColor={255,255,255},
+          fillPattern=FillPattern.Solid,
+          rotation=72,
+          origin={-150,50}),
+        Polygon(
+          points={{-14,-100},{-6,-80},{6,-80},{14,-100},{-14,-100}},
+          lineColor={0,0,0},
+          lineThickness=0.5,
+          fillColor={255,255,255},
+          fillPattern=FillPattern.Solid,
+          rotation=108,
+          origin={-150,-50}),
+        Polygon(
+          points={{-14,-100},{-6,-80},{6,-80},{14,-100},{-14,-100}},
+          lineColor={0,0,0},
+          lineThickness=0.5,
+          fillColor={255,255,255},
+          fillPattern=FillPattern.Solid,
+          rotation=144,
+          origin={-94,-128}),
+        Polygon(
+          points={{-14,-100},{-6,-80},{6,-80},{14,-100},{-14,-100}},
+          lineColor={0,0,0},
+          lineThickness=0.5,
+          fillColor={255,255,255},
+          fillPattern=FillPattern.Solid,
+          rotation=180,
+          origin={0,-158}),
+        Polygon(
+          points={{-14,-100},{-6,-80},{6,-80},{14,-100},{-14,-100}},
+          lineColor={0,0,0},
+          lineThickness=0.5,
+          fillColor={255,255,255},
+          fillPattern=FillPattern.Solid,
+          rotation=216,
+          origin={94,-127}),
+        Polygon(
+          points={{-14,-100},{-6,-80},{6,-80},{14,-100},{-14,-100}},
+          lineColor={0,0,0},
+          lineThickness=0.5,
+          fillColor={255,255,255},
+          fillPattern=FillPattern.Solid,
+          rotation=252,
+          origin={150,-49}),
+        Polygon(
+          points={{-14,-100},{-6,-80},{6,-80},{14,-100},{-14,-100}},
+          lineColor={0,0,0},
+          lineThickness=0.5,
+          fillColor={255,255,255},
+          fillPattern=FillPattern.Solid,
+          rotation=288,
+          origin={150,51}),
+        Polygon(
+          points={{10,48},{18,68},{30,68},{38,48},{10,48}},
+          lineColor={0,0,0},
+          lineThickness=0.5,
+          fillColor={255,255,255},
+          fillPattern=FillPattern.Solid,
+          rotation=-36,
+          origin={-12,22})}));
 end Mechanics;

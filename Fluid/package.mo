@@ -1,5 +1,5 @@
 within ScalableTranslationStatistics;
-package Fluid
+package Fluid "fluid representation of scalable translation statistics"
 
   annotation (Icon(graphics={
         Line(

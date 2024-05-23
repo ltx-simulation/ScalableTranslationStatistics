@@ -1,4 +1,4 @@
-within ScalableTranslationStatistics.Fluid.Components;
+within ScalableTranslationStatistics.Fluid.Components.Boundaries;
 model Boundary_Pressure
 
   parameter Modelica.Units.SI.Pressure p = 101300 "pressure boundary value";

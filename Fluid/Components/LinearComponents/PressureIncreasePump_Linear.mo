@@ -1,5 +1,5 @@
-within ScalableTranslationStatistics.Fluid.Components;
-model PressureIncreasePump
+within ScalableTranslationStatistics.Fluid.Components.LinearComponents;
+model PressureIncreasePump_Linear
 
   Real delta_p(nominal=1e5) "pressure difference between inlet and outlet";
   Real mdot "mass flow through pump";
@@ -38,8 +38,8 @@ equation
   vdot = mdot/CalcDensity(fluidPortOut.p);
 
   // mass flow - pressure drop relation
-  delta_p / delta_p_nom = (n/n_nom)^2 *
-                          (1-((vdot*n_nom)/(vdot_nom*n))^2);
+  delta_p / delta_p_nom = (n/n_nom) *
+                          (1-((vdot*n_nom)/(vdot_nom*n)));
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={
         Rectangle(
@@ -66,4 +66,4 @@ equation
           textString="n")}),                                     Diagram(coordinateSystem(
           preserveAspectRatio=false)),
     experiment(StopTime=1));
-end PressureIncreasePump;
+end PressureIncreasePump_Linear;

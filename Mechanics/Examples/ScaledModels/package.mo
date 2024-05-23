@@ -1,6 +1,5 @@
 within ScalableTranslationStatistics.Mechanics.Examples;
 package ScaledModels "Collection of models with scaled number of nonlinear equations and equation systems and scaled continuous time states"
-
   annotation (Documentation(info="
 <html>
 <head>

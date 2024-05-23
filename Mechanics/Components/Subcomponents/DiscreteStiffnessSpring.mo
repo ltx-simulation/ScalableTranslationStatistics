@@ -8,11 +8,11 @@ model DiscreteStiffnessSpring
   discrete Modelica.Units.SI.TranslationalSpringConstant c(final min=0)
     "Spring constant";
 
-  parameter Modelica.Units.SI.Distance s_rel0=0 "Unstretched spring length";
+  parameter Modelica.Units.SI.Position s_rel0=0 "Unstretched spring length";
 
   parameter Boolean include_Jacobi = false "introduce a numerical jacobian";
 protected
-  Modelica.Units.SI.Distance s_abscissa;
+  Modelica.Units.SI.Position s_abscissa;
   Modelica.Units.SI.Velocity v_rel;
   Integer mode;
     parameter Modelica.Units.SI.Position s_fullsteps[:]=cat(1,{0},s_steps);
@@ -25,16 +25,15 @@ protected
   Modelica.Blocks.Sources.RealExpression realExpression(y=abs(s_rel-s_rel0))
     annotation (Placement(transformation(extent={{-56,18},{-36,38}})));
 initial equation
-    //mode=integer(combiTable1Ds.y[1]+1e-4);
     c = stiffness[mode];
     s_abscissa=Functions.InitialForce(mode,stiffness,s_fullsteps,s_rel0)/c - s_rel0;
 equation
-  // combiTable1Ds.u=s_rel;
+  //  mode = number of section in the stiffness table
   mode=integer(combiTable1Ds.y[1]+1e-4);
   if include_Jacobi then
     limit(f,maxForce)  = c*(s_rel-s_abscissa-s_rel0);
   else
-    // spring stiffness depends quadratically on the way
+    // spring stiffness depends on the deflection of the spring
     f  = c*(s_rel-s_abscissa-s_rel0);
   end if;
   der(s_abscissa) = 0;
@@ -42,25 +41,22 @@ equation
   v_rel=der(s_rel);
 
   when change(mode) then
+
     c = stiffness[mode];
+    reinit(s_abscissa,
     if mode>1 then
       if s_rel-s_rel0 >=0 then
         if v_rel>0 then
-          reinit(s_abscissa, s_fullsteps[mode] - pre(f) / stiffness[mode]);
+          s_fullsteps[mode] - pre(f) / stiffness[mode]
         else
-          reinit(s_abscissa,  s_fullsteps[mode+1] - pre(f) / stiffness[mode]);
-        end if;
+          s_fullsteps[mode+1] - pre(f) / stiffness[mode]
       else
         if v_rel>0 then
-          reinit(s_abscissa, (-1)*s_fullsteps[mode+1] - pre(f) / stiffness[mode]);
+          (-1)*s_fullsteps[mode+1] - pre(f) / stiffness[mode]
         else
-          reinit(s_abscissa,  (-1)*s_fullsteps[mode] - pre(f) / stiffness[mode]);
-        end if;
-
-      end if;
+          (-1)*s_fullsteps[mode] - pre(f) / stiffness[mode]
     else
-      reinit(s_abscissa, 0);
-    end if;
+       0);
  end when;
   connect(realExpression.y, combiTable1Ds.u)
     annotation (Line(points={{-35,28},{-24,28}}, color={0,0,127}));

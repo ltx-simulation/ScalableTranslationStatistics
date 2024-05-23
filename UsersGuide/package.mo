@@ -5,7 +5,7 @@ package UsersGuide "Users Guide"
   annotation (Documentation(info="<html>
 <p>This <b>Modelica</b> package contains - as a central part of the package - a generic model, with translation statistics (characteristics of the model given in Dymola&lsquo;s translation statistics), that can be set by parameters as shown in the following picture:</p>
 <p><br><img src=\"modelica://ScalableTranslationStatistics/Resources/Statistics_Match.png\"/> </p>
-<p>This is done in a mechanical example and - in a very limited edition - in a fluid example. In the following the mechanical example will be described:</p>
+<p>This is done in a mechanical example and - in a limited edition - in a fluid example. In the following the mechanical example will be described:</p>
 <p><br>A mechanical spring-mass system is built according to the translation statistics specified by the user </p>
 <p>Hence, the central idea behind the model is that every mass has two continuous state variables (position and velocity) and a spring chain (chain of serial connected springs) gives an equation system with a size (number of equations in the system) dependent on the length of the chain. </p>
 <p>By assembling masses and spring chains in a smart way, arbitrary translation statistics can be reached. </p>

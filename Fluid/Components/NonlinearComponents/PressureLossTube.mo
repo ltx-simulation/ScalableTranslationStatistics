@@ -1,4 +1,4 @@
-within ScalableTranslationStatistics.Fluid.Components;
+within ScalableTranslationStatistics.Fluid.Components.NonlinearComponents;
 model PressureLossTube
 
   Real delta_p(nominal=1e5) "pressure drop in tube";

@@ -7,5 +7,5 @@ model TranslationStatistics_XXL
     num_NL_equations=160,
     num_masses=1500);
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
-        coordinateSystem(preserveAspectRatio=false)));
+        coordinateSystem(preserveAspectRatio=false)), experiment(StopTime=10, __Dymola_Algorithm="Dassl"));
 end TranslationStatistics_XXL;
