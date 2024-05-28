@@ -15,7 +15,7 @@ model TwoDimSpring
     Modelica.Units.SI.Force f_res[2];
   parameter Modelica.Units.SI.TranslationalSpringConstant c(final min=0, start=1)
     "Spring constant";
-  function limit =Functions.LimitationFunction;
+  function limit =Utilities.LimitationFunction;
   parameter Boolean insert_Jacobian = false "Add a numerical Jacobian";
 
 equation

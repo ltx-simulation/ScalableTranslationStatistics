@@ -13,6 +13,11 @@ model TwoPortVolume
           extent={{-110,-10},{-90,10}})));
   Interfaces.FluidPortOut fluidPortOut
     annotation (Placement(transformation(extent={{90,-10},{110,10}})));
+  Modelica.Blocks.Interfaces.RealOutput m_Volume annotation (Placement(
+        transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=270,
+        origin={0,-106})));
 initial equation
   //initial pressure
   p=p_start;
@@ -24,6 +29,8 @@ equation
 
    fluidPortIn.p=p;
    fluidPortOut.p=p;
+
+   m_Volume=m;
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={
                                 Ellipse(

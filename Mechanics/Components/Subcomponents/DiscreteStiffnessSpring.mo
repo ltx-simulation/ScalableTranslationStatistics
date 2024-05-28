@@ -18,7 +18,7 @@ protected
     parameter Modelica.Units.SI.Position s_fullsteps[:]=cat(1,{0},s_steps);
   parameter Modelica.Units.SI.Force maxForce = 1e20 "upper limit for the spring force";
   //parameter Modelica.Units.SI.Force initialForce;
-  function limit = Functions.LimitationFunction;
+  function limit = Utilities.LimitationFunction;
   Modelica.Blocks.Tables.CombiTable1Ds combiTable1Ds(table=transpose({s_fullsteps,1:size(s_fullsteps,1)}),
       extrapolation=Modelica.Blocks.Types.Extrapolation.HoldLastPoint)
     annotation (Placement(transformation(extent={{-22,18},{-2,38}})));
@@ -26,7 +26,11 @@ protected
     annotation (Placement(transformation(extent={{-56,18},{-36,38}})));
 initial equation
     c = stiffness[mode];
-    s_abscissa=Functions.InitialForce(mode,stiffness,s_fullsteps,s_rel0)/c - s_rel0;
+    s_abscissa=Utilities.InitialForce(
+            mode,
+            stiffness,
+            s_fullsteps,
+            s_rel0)/c - s_rel0;
 equation
   //  mode = number of section in the stiffness table
   mode=integer(combiTable1Ds.y[1]+1e-4);

@@ -1,97 +1,132 @@
 within ScalableTranslationStatistics.Fluid.Components.AssembledComponents;
 model TubePumpNetwork
-  parameter Integer numNLequations = 3;
+  parameter Integer numNLequations=3;
   parameter Boolean withNumericJacobian = false;
 
-  Components.TwoPortVolume volume
-    annotation (Placement(transformation(extent={{0,-10},{20,10}})));
   NonlinearComponents.PressureIncreasePump analytic_pump(redeclare replaceable
       function CalcDensity = Media.CalcDensitySimple) if not
     withNumericJacobian annotation (Placement(transformation(
         extent={{15,-16},{-15,16}},
         rotation=180,
-        origin={55,3.55271e-15})));
+        origin={-47,0})));
   NonlinearComponents.PressureIncreasePump numeric_pump(redeclare replaceable
       function CalcDensity = Media.AssertedDensity) if withNumericJacobian
     annotation (Placement(transformation(
         extent={{15,-16},{-15,16}},
         rotation=180,
-        origin={55,3.55271e-15})));
+        origin={-47,0})));
 
-  Modelica.Blocks.Sources.RealExpression realExpression1(y=if time < 0.5
-         then 50 else 100)
-    annotation (Placement(transformation(extent={{10,-40},{30,-20}})));
   Interfaces.FluidPortOut fluidPortOut annotation (Placement(transformation(
           rotation=0, extent={{92,-10},{112,10}})));
   Interfaces.FluidPortIn fluidPortIn annotation (Placement(transformation(
           rotation=0, extent={{-112,-10},{-92,10}})));
-  ParallelResistors parallelResistors(nParallel = numNLequations)
-    annotation (Placement(transformation(extent={{-80,-32},{-16,32}})));
+  AssembledComponents.ParallelResistors parallelResistors(nParallel=
+        NumNL) if NumNL>0
+    annotation (Placement(transformation(extent={{12,-32},{76,32}})));
+  Components.LinearComponents.PressureLossTube_Linear linearTube if withNumericJacobian and numNLequations==1;
     //
+protected
+  parameter Integer NumNL = if withNumericJacobian and numNLequations==1 then 0 else numNLequations;
+
 equation
+  connect(parallelResistors.fluidPortOut, fluidPortOut)
+    annotation (Line(points={{76.64,0},{102,0}}, color={102,44,145}));
+  connect(numeric_pump.fluidPortOut, parallelResistors.fluidPortIn)
+    annotation (Line(points={{-31.7,0},{11.36,0}}, color={102,44,145}));
+  connect(analytic_pump.fluidPortOut, parallelResistors.fluidPortIn)
+    annotation (Line(points={{-31.7,0},{11.36,0}}, color={102,44,145}));
+  connect(fluidPortIn, numeric_pump.fluidPortIn)
+    annotation (Line(points={{-102,0},{-62,0}}, color={102,44,145}));
+  connect(fluidPortIn, analytic_pump.fluidPortIn)
+    annotation (Line(points={{-102,0},{-62,0}}, color={102,44,145}));
+  connect(numeric_pump.fluidPortOut, linearTube.fluidPortIn);
+  connect(linearTube.fluidPortOut, fluidPortOut);
 
-    connect(volume.fluidPortOut, analytic_pump.fluidPortIn)
-    annotation (Line(points={{20,0},{40,0}}, color={28,108,200}));
-  connect(realExpression1.y, analytic_pump.n)
-    annotation (Line(points={{31,-30},{55,-30},{55,-17.28}}, color={0,0,127}));
-  connect(fluidPortOut, analytic_pump.fluidPortOut)
-    annotation (Line(points={{102,0},{70.3,0}}, color={28,108,200}));
-
-  connect(volume.fluidPortOut, numeric_pump.fluidPortIn)
-    annotation (Line(points={{20,0},{40,0}}, color={28,108,200}));
-  connect(realExpression1.y, numeric_pump.n)
-    annotation (Line(points={{31,-30},{55,-30},{55,-17.28}}, color={0,0,127}));
-  connect(fluidPortOut, numeric_pump.fluidPortOut)
-    annotation (Line(points={{102,0},{70.3,0}}, color={28,108,200}));
-  connect(parallelResistors.fluidPortIn, fluidPortIn)
-    annotation (Line(points={{-80.64,0},{-102,0}}, color={102,44,145}));
-  connect(parallelResistors.fluidPortOut, volume.fluidPortIn)
-    annotation (Line(points={{-15.36,0},{0,0}}, color={102,44,145}));
   annotation (Icon(graphics={
         Rectangle(
-          extent={{-58,60},{-12,38}},
+          extent={{8,76},{82,44}},
           lineColor={102,44,145},
-          fillPattern=FillPattern.HorizontalCylinder),
+          fillPattern=FillPattern.HorizontalCylinder,
+          visible=numNLequations > 1),
         Rectangle(
-          extent={{-58,10},{-12,-12}},
+          extent={{8,-44},{82,-76}},
           lineColor={102,44,145},
-          fillPattern=FillPattern.HorizontalCylinder),
-        Rectangle(
-          extent={{-58,-40},{-12,-62}},
-          lineColor={102,44,145},
-          fillPattern=FillPattern.HorizontalCylinder),
+          fillPattern=FillPattern.HorizontalCylinder,
+          visible=numNLequations > 2),
         Ellipse(
-          extent={{20,20},{68,-24}},
+          extent={{-88,40},{-8,-40}},
           lineColor={102,44,145},
           fillPattern=FillPattern.Solid,
           fillColor={255,255,255},
           lineThickness=1),
         Line(
-          points={{28,14},{68,2}},
+          points={{-80,24},{-8,6}},
           color={102,44,145},
           thickness=1),
         Line(
-          points={{26,-16},{68,-4}},
+          points={{-76,-28},{-10,-10}},
           color={102,44,145},
           thickness=1),
         Line(
-          points={{-100,0},{-66,0},{-66,50},{-58,50}},
+          points={{-8,0},{0,0},{0,60},{8,60}},
+          color={127,0,127},
+          thickness=0.5,
+          visible=numNLequations > 1),
+        Line(
+          points={{100,0},{90,0},{90,60},{82,60}},
+          color={127,0,127},
+          thickness=0.5,
+          visible=numNLequations > 1),
+        Line(
+          points={{82,-62},{90,-62},{90,0},{100,0}},
+          color={127,0,127},
+          thickness=0.5,
+          visible=numNLequations > 2),
+        Line(
+          points={{8,-60},{0,-60},{0,0},{-8,0}},
+          color={127,0,127},
+          thickness=0.5,
+          visible=numNLequations > 2),
+        Line(
+          points={{-8,0},{0,0}},
           color={127,0,127},
           thickness=0.5),
         Line(
-          points={{-12,0},{2,0},{2,50},{-12,50}},
+          points={{-100,0},{-88,0}},
+          color={127,0,127},
+          thickness=0.5),
+        Rectangle(
+          extent={{8,16},{82,-16}},
+          lineColor={102,44,145},
+          fillPattern=FillPattern.HorizontalCylinder),
+        Line(
+          points={{-8,0},{8,0}},
           color={127,0,127},
           thickness=0.5),
         Line(
-          points={{-12,-50},{2,-50},{2,0},{20,0}},
+          points={{82,0},{98,0}},
           color={127,0,127},
           thickness=0.5),
         Line(
-          points={{-58,-50},{-66,-50},{-66,0},{-58,0}},
+          points={{0,-100},{0,100}},
           color={127,0,127},
-          thickness=0.5),
+          thickness=0.5,
+          visible=numNLequations > 3),
         Line(
-          points={{68,0},{94,0}},
+          points={{90,-100},{90,100}},
           color={127,0,127},
-          thickness=0.5)}));
+          thickness=0.5,
+          visible=numNLequations > 3),
+        Rectangle(
+          extent={{8,96},{82,100}},
+          lineColor={102,44,145},
+          fillColor={102,44,145},
+          fillPattern=FillPattern.Solid,
+          visible=numNLequations > 3),
+        Rectangle(
+          extent={{8,-100},{82,-96}},
+          lineColor={102,44,145},
+          fillColor={102,44,145},
+          fillPattern=FillPattern.Solid,
+          visible=numNLequations > 3)}));
 end TubePumpNetwork;

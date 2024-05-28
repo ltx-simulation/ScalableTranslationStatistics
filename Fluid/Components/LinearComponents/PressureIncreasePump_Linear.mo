@@ -9,6 +9,8 @@ model PressureIncreasePump_Linear
   parameter Real mdot_nom = 0.5 "nominal mass flow art nominal pressure increase";
   Real vdot_nom = mdot_nom/CalcDensity(fluidPortIn.p) "nominal volume flow";
   parameter Real n_nom = 10 "nominal rotational speed";
+  parameter Boolean use_input = false;
+  parameter Real n_const = 10 "constant rotational speed if no input given" annotation(Dialog(enable = not use_input));
 
   Interfaces.FluidPortIn fluidPortIn "inlet port"
     annotation (Placement(transformation(extent={{-110,-10},{-90,10}}),
@@ -17,12 +19,14 @@ model PressureIncreasePump_Linear
     annotation (Placement(transformation(extent={{92,-10},{112,10}}),
         iconTransformation(extent={{92,-10},{112,10}})));
 
-  Modelica.Blocks.Interfaces.RealInput n "rotational speed of pump" annotation (Placement(transformation(
+  Modelica.Blocks.Interfaces.RealInput n if use_input "rotational speed of pump" annotation (Placement(transformation(
         extent={{-20,-20},{20,20}},
         rotation=270,
         origin={0,108})));
   replaceable function CalcDensity = Media.BaseDensityFunction
     constrainedby Media.BaseDensityFunction                                           annotation(choicesAllMatching=true);
+protected
+ Modelica.Blocks.Interfaces.RealInput n_internal;
 
 equation
   // mass flow coming from inlet
@@ -38,14 +42,18 @@ equation
   vdot = mdot/CalcDensity(fluidPortOut.p);
 
   // mass flow - pressure drop relation
-  delta_p / delta_p_nom = (n/n_nom) *
-                          (1-((vdot*n_nom)/(vdot_nom*n)));
-
+  delta_p / delta_p_nom = (n_internal/n_nom) *
+                          (1-((vdot*n_nom)/(vdot_nom*n_internal)));
+  connect(n, n_internal);
+  if not use_input then
+    n_internal = n_const;
+  end if;
   annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={
         Rectangle(
           extent={{-100,40},{100,-40}},
           lineColor={102,44,145},
-          fillPattern=FillPattern.HorizontalCylinder),
+          fillPattern=FillPattern.HorizontalCylinder,
+          fillColor={170,85,255}),
         Ellipse(
           extent={{-80,82},{80,-80}},
           lineColor={102,44,145},

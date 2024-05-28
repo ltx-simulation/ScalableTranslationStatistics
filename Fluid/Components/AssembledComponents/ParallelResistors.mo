@@ -1,6 +1,6 @@
 within ScalableTranslationStatistics.Fluid.Components.AssembledComponents;
 model ParallelResistors
-  parameter Integer nParallel = 3;
+  parameter Integer nParallel=4;
   NonlinearComponents.PressureLossTube pressureLossTube[nParallel]
     annotation (Placement(transformation(extent={{18,-22},{-26,22}})));
 
@@ -20,7 +20,8 @@ equation
         Rectangle(
           extent={{-40,80},{40,40}},
           lineColor={102,44,145},
-          fillPattern=FillPattern.HorizontalCylinder),
+          fillPattern=FillPattern.HorizontalCylinder,
+          radius=0, visible=nParallel >1),
         Rectangle(
           extent={{-40,20},{40,-20}},
           lineColor={102,44,145},
@@ -28,10 +29,26 @@ equation
         Rectangle(
           extent={{-40,-40},{40,-80}},
           lineColor={102,44,145},
-          fillPattern=FillPattern.HorizontalCylinder),
+          fillPattern=FillPattern.HorizontalCylinder, visible=nParallel >2),
         Line(points={{-96,0},{-60,0},{-60,60},{60,60},{60,0},{100,0}}, color={
-              102,44,145}),
+              102,44,145}, visible=nParallel >1),
         Line(points={{-100,0},{-60,0},{-60,-60},{60,-60},{60,0},{102,0}}, color
-            ={102,44,145}),
-        Line(points={{-100,0},{104,0}}, color={102,44,145})}));
+            ={102,44,145}, visible=nParallel >2),
+        Line(points={{-100,0},{104,0}}, color={102,44,145}),
+        Rectangle(
+          extent={{-40,-94},{40,-100}},
+          lineColor={102,44,145},
+          fillPattern=FillPattern.Solid,              visible=
+                                          nParallel >3,
+          radius=0,
+          fillColor={102,44,145}),
+        Rectangle(
+          extent={{-40,100},{40,94}},
+          lineColor={102,44,145},
+          fillPattern=FillPattern.Solid,              visible=
+                                          nParallel >3,
+          radius=0,
+          fillColor={102,44,145}),
+        Line(points={{-60,100},{-60,-102}}, color={102,44,145}, visible=nParallel >3),
+        Line(points={{60,100},{60,-102}}, color={102,44,145}, visible=nParallel >3)}));
 end ParallelResistors;

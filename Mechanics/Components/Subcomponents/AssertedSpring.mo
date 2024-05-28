@@ -4,7 +4,7 @@ model AssertedSpring "Linear 1D translational spring"
   parameter Modelica.Units.SI.TranslationalSpringConstant c(final min=0, start=1) "Spring constant";
   parameter Modelica.Units.SI.Distance s_rel0=0 "Unstretched spring length";
   function limit =
-      ScalableTranslationStatistics.Mechanics.Components.Functions.LimitationFunction;
+      Utilities.LimitationFunction;
   parameter Boolean insert_Jacobian = false "Add a numerical Jacobian";
 equation
   if insert_Jacobian then

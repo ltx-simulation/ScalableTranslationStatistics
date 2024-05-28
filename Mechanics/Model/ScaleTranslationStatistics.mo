@@ -187,28 +187,25 @@ equation
     connect(linearSpringChain[i].flange_b,fixed_linear[i].flange);
   end for;
   annotation (
-    Icon(coordinateSystem(preserveAspectRatio=false), graphics={
+        Icon(coordinateSystem(preserveAspectRatio=false), graphics={
         Rectangle(
           extent={{-34,74},{76,-32}},
           lineColor={0,0,0},
-          fillColor={215,215,215},
-          fillPattern=FillPattern.Solid),
+          fillColor={170,213,255},
+          fillPattern=FillPattern.Solid,
+          radius=20),
         Rectangle(
           extent={{-64,10},{6,-58}},
           lineColor={0,0,0},
-          fillColor={215,215,215},
-          fillPattern=FillPattern.Solid),
+          fillColor={85,170,255},
+          fillPattern=FillPattern.Solid,
+          radius=15),
         Rectangle(
           extent={{-80,-42},{-50,-72}},
           lineColor={0,0,0},
-          fillColor={215,215,215},
-          fillPattern=FillPattern.Solid),
-        Text(
-          extent={{-78,78},{114,6}},
-          textColor={0,0,0},
-          textString="Scalable
-Translation
-Statistics")}),
+          fillColor={0,128,255},
+          fillPattern=FillPattern.Solid,
+          radius=10)}),
     Diagram(coordinateSystem(preserveAspectRatio=false)),
     experiment(
       StopTime=100,

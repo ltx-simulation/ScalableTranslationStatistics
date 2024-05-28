@@ -16,7 +16,7 @@ model TwoDimNLSpring
     "Force between flanges (positive in direction of flange axis R)";
   parameter Modelica.Units.SI.TranslationalSpringConstant c(final min=0,each start=1)
     "Spring constant";
-      function limit =Functions.LimitationFunction;
+      function limit =Utilities.LimitationFunction;
   parameter Boolean insert_Jacobian = false "Add a numerical Jacobian";
 equation
   s_rel[1] =flange_b.s - flange_a.s;

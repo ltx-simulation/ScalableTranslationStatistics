@@ -8,7 +8,7 @@ model NonlinearSpring
   parameter Boolean insert_Jacobian = false "introduce a numerical jacobian";
   parameter Modelica.Units.SI.Force maxForce = 1e20 "upper limit for the spring force";
   function limit =
-      ScalableTranslationStatistics.Mechanics.Components.Functions.LimitationFunction;
+      Utilities.LimitationFunction;
 equation
 
   if insert_Jacobian then

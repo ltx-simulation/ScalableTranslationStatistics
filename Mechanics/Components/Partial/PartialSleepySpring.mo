@@ -7,8 +7,9 @@ partial model PartialSleepySpring
   parameter Integer compiler_type = 1 "1=visual studio, 2=gcc";
   parameter Real waiting_time = 50 "waiting time in milliseconds";
 protected
-  function WaitingVS = Functions.SleepVS "waiting function for Visual Studio Compiler";
-  function WaitingGCC =Functions.SleepGCC "waiting function for gcc Compiler";
+  function WaitingVS = Utilities.SleepVS "waiting function for Visual Studio Compiler";
+  function WaitingGCC = Utilities.SleepGCC
+                                          "waiting function for gcc Compiler";
 equation
   if waiting_time>0 then
     if compiler_type==1 then

@@ -30,5 +30,23 @@ The following effects are additionally considered in these Examples:
 <li><a href=\"modelica://ScalableTranslationStatistics.Mechanics.Examples.Test_STS_Friction>\"Friction </a>Instead of a &quot; flying&quot; mass, the mass is slinding on the ground with friction and has hard stops (using <a href=modelica://Modelica.Mechanics.Translational.Components.MassWithStopAndFriction>MassWithStopAndFriction </a></li>
 <li><a href=\"modelica://ScalableTranslationStatistics.Mechanics.Examples.Test_STS_numerizedEvents>\"numerizedEvents</a>Parametrizable number of events per second simulation time; realized by turning on and off to apply a force on the single mass in the small system</li>
 </ul>
-</html>"), uses(Modelica(version="4.0.0")));
+</html>"), uses(Modelica(version="4.0.0")),    Icon(graphics={
+        Rectangle(
+          extent={{-36,76},{74,-30}},
+          lineColor={0,0,0},
+          fillColor={170,213,255},
+          fillPattern=FillPattern.Solid,
+          radius=20),
+        Rectangle(
+          extent={{-66,12},{4,-56}},
+          lineColor={0,0,0},
+          fillColor={85,170,255},
+          fillPattern=FillPattern.Solid,
+          radius=18),
+        Rectangle(
+          extent={{-82,-40},{-52,-70}},
+          lineColor={0,0,0},
+          fillColor={0,128,255},
+          fillPattern=FillPattern.Solid,
+          radius=10)}));
 end ScalableTranslationStatistics;

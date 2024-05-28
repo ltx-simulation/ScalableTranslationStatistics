@@ -6,7 +6,7 @@ model CharacteristicsSpring
   parameter Modelica.Units.SI.Distance s_rel0=0 "Unstretched spring length";
   parameter Boolean insert_Jacobian = false "introduce a numerical jacobian";
   parameter Modelica.Units.SI.Force maxForce = 1e20 "upper limit for the spring force";
-  function limit = Components.Functions.LimitationFunction;
+  function limit = Utilities.LimitationFunction;
   Modelica.Blocks.Tables.CombiTable1Ds combiTable1Ds(
     tableOnFile=true,
     tableName=tableName,
