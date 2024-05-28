@@ -16,8 +16,6 @@ model TubePumpNetwork_Linear
   ScalableTranslationStatistics.Fluid.Interfaces.FluidPortOut fluidPortOut
     annotation (Placement(transformation(extent={{92,-10},{112,10}})));
 equation
-  connect(sine.y, pressureIncreasePump_Linear.n)
-    annotation (Line(points={{-119,84},{-38,84},{-38,50.8}}, color={0,0,127}));
   connect(pressureIncreasePump_Linear.fluidPortIn, fluidPortIn) annotation (
       Line(points={{-48,40},{-74,40},{-74,0},{-100,0}}, color={102,44,145}));
   connect(fluidPortIn, parallelResistors_Linear.fluidPortIn)
@@ -26,6 +24,8 @@ equation
     annotation (Line(points={{-31.8,0},{102,0}}, color={102,44,145}));
   connect(pressureIncreasePump_Linear.fluidPortOut, fluidPortOut) annotation (
       Line(points={{-27.8,40},{62,40},{62,0},{102,0}}, color={102,44,145}));
+  connect(sine.y, pressureIncreasePump_Linear.n)
+    annotation (Line(points={{-119,84},{-38,84},{-38,50.8}}, color={0,0,127}));
   annotation (Icon(graphics={
         Rectangle(
           extent={{8,76},{82,44}},

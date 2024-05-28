@@ -127,9 +127,9 @@ equation
   // Nonlinear Spring Chains
   // if enough NL-equations systems (num_NL) each mass is connected with each other
   for i in 1:min(num_NL,NumVariations) loop
-    //Modelica.Utilities.Streams.print("connect mass"+String(Components.Functions.GetOneVariation_idx1(num_masses-1,i))+" with mass"+ String(Components.Functions.GetOneVariation_idx2(num_masses-1,i)));
-    connect( springChain[i].flange_a, mass[Components.Functions.GetOneVariation_idx1(num_masses-1,i)].flange_b);
-    connect( springChain[i].flange_b, mass[Components.Functions.GetOneVariation_idx2(num_masses-1,i)].flange_a);
+    //Modelica.Utilities.Streams.print("connect mass"+String(Utilities.GetOneVariation_idx1(num_masses-1,i))+" with mass"+ String(Utilities.GetOneVariation_idx2(num_masses-1,i)));
+    connect( springChain[i].flange_a, mass[Utilities.GetOneVariation_idx1(num_masses-1,i)].flange_b);
+    connect( springChain[i].flange_b, mass[Utilities.GetOneVariation_idx2(num_masses-1,i)].flange_a);
   end for;
   // if there are more NL-equation systems than combination of masses, connect the first mass with a fixation (one per NL-spring)
   if num_NL > NumVariations then

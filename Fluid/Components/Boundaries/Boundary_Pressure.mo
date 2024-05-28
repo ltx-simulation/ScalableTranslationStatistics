@@ -24,7 +24,7 @@ equation
   annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={
           Rectangle(
           extent={{0,80},{20,-80}},
-          lineColor={28,108,200},
+          lineColor={102,44,145},
           lineThickness=1,
           fillPattern=FillPattern.Sphere,
           fillColor={170,85,255}),  Line(

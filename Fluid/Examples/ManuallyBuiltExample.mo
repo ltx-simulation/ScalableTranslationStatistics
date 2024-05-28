@@ -14,22 +14,22 @@ model ManuallyBuiltExample
     pressureLossTube_Linear1
     annotation (Placement(transformation(extent={{20,-10},{40,10}})));
   ScalableTranslationStatistics.Fluid.Components.AssembledComponents.TubePumpNetwork
-    tubePumpNetworkAlt(numNLequations=2, withNumericJacobian=true)
+    tubePumpNetwork(numNLequations=2, withNumericJacobian=true)
     annotation (Placement(transformation(extent={{-68,22},{-32,58}})));
   ScalableTranslationStatistics.Fluid.Components.AssembledComponents.TubePumpNetwork
-    tubePumpNetworkAlt1(numNLequations=1, withNumericJacobian=false)
+    tubePumpNetwork1(numNLequations=1, withNumericJacobian=false)
     annotation (Placement(transformation(extent={{12,26},{48,62}})));
   ScalableTranslationStatistics.Fluid.Components.AssembledComponents.TubePumpNetwork
-    tubePumpNetworkAlt4(numNLequations=4, withNumericJacobian=true)
+    tubePumpNetwork4(numNLequations=4, withNumericJacobian=true)
     annotation (Placement(transformation(extent={{-36,-58},{0,-22}})));
   ScalableTranslationStatistics.Fluid.Components.AssembledComponents.TubePumpNetwork
-    tubePumpNetworkAlt5(numNLequations=1)
+    tubePumpNetwork5(numNLequations=1)
     annotation (Placement(transformation(extent={{-158,22},{-122,58}})));
   ScalableTranslationStatistics.Fluid.Components.AssembledComponents.TubePumpNetwork
-    tubePumpNetworkAlt6(numNLequations=2, withNumericJacobian=true)
+    tubePumpNetwork6(numNLequations=2, withNumericJacobian=true)
     annotation (Placement(transformation(extent={{-158,-18},{-122,18}})));
   ScalableTranslationStatistics.Fluid.Components.AssembledComponents.TubePumpNetwork
-    tubePumpNetworkAlt7(numNLequations=2)
+    tubePumpNetwork7(numNLequations=2)
     annotation (Placement(transformation(extent={{-158,-58},{-122,-22}})));
   ScalableTranslationStatistics.Fluid.Components.Boundaries.Boundary_Pressure
     boundary_Pressure(use_input=true)
@@ -89,34 +89,34 @@ equation
     annotation (Line(points={{0,0},{20.2,0}},   color={102,44,145}));
   connect(twoPortVolume2.fluidPortIn, pressureLossTube_Linear1.fluidPortIn)
     annotation (Line(points={{60,0},{40,0}}, color={102,44,145}));
-  connect(twoPortVolume.fluidPortOut, tubePumpNetworkAlt.fluidPortIn)
+  connect(twoPortVolume.fluidPortOut, tubePumpNetwork.fluidPortIn)
     annotation (Line(points={{-80,0},{-72,0},{-72,40},{-68.36,40}}, color={102,
           44,145}));
-  connect(twoPortVolume1.fluidPortIn, tubePumpNetworkAlt.fluidPortOut)
+  connect(twoPortVolume1.fluidPortIn, tubePumpNetwork.fluidPortOut)
     annotation (Line(points={{-20,0},{-30,0},{-30,40},{-31.64,40}}, color={102,
           44,145}));
-  connect(twoPortVolume1.fluidPortOut, tubePumpNetworkAlt1.fluidPortIn)
+  connect(twoPortVolume1.fluidPortOut, tubePumpNetwork1.fluidPortIn)
     annotation (Line(points={{0,0},{8,0},{8,44},{11.64,44}},color={102,44,145}));
-  connect(tubePumpNetworkAlt1.fluidPortOut, twoPortVolume2.fluidPortIn)
+  connect(tubePumpNetwork1.fluidPortOut, twoPortVolume2.fluidPortIn)
     annotation (Line(points={{48.36,44},{50,44},{50,0},{60,0}}, color={102,44,
           145}));
-  connect(tubePumpNetworkAlt4.fluidPortIn, twoPortVolume.fluidPortOut)
+  connect(tubePumpNetwork4.fluidPortIn, twoPortVolume.fluidPortOut)
     annotation (Line(points={{-36.36,-40},{-72,-40},{-72,0},{-80,0}}, color={
           102,44,145}));
-  connect(tubePumpNetworkAlt5.fluidPortOut, twoPortVolume.fluidPortIn)
+  connect(tubePumpNetwork5.fluidPortOut, twoPortVolume.fluidPortIn)
     annotation (Line(points={{-121.64,40},{-110,40},{-110,0},{-100,0}}, color={
           102,44,145}));
-  connect(tubePumpNetworkAlt6.fluidPortOut, twoPortVolume.fluidPortIn)
+  connect(tubePumpNetwork6.fluidPortOut, twoPortVolume.fluidPortIn)
     annotation (Line(points={{-121.64,0},{-100,0}},                     color={
           102,44,145}));
-  connect(tubePumpNetworkAlt7.fluidPortOut, twoPortVolume.fluidPortIn)
+  connect(tubePumpNetwork7.fluidPortOut, twoPortVolume.fluidPortIn)
     annotation (Line(points={{-121.64,-40},{-110,-40},{-110,0},{-100,0}}, color
         ={102,44,145}));
-  connect(tubePumpNetworkAlt5.fluidPortIn, boundary_Pressure.fluidPortOut)
+  connect(tubePumpNetwork5.fluidPortIn, boundary_Pressure.fluidPortOut)
     annotation (Line(points={{-158.36,40},{-164,40}}, color={102,44,145}));
-  connect(tubePumpNetworkAlt6.fluidPortIn, boundary_Pressure1.fluidPortOut)
+  connect(tubePumpNetwork6.fluidPortIn, boundary_Pressure1.fluidPortOut)
     annotation (Line(points={{-158.36,0},{-164,0}},   color={102,44,145}));
-  connect(tubePumpNetworkAlt7.fluidPortIn, boundary_Pressure2.fluidPortOut)
+  connect(tubePumpNetwork7.fluidPortIn, boundary_Pressure2.fluidPortOut)
     annotation (Line(points={{-158.36,-40},{-164,-40}}, color={102,44,145}));
   connect(sine.y, boundary_Pressure.p)
     annotation (Line(points={{-185.4,40},{-176.4,40}}, color={0,0,127}));
@@ -136,7 +136,7 @@ equation
     annotation (Line(points={{173.4,-40},{160.4,-40}}, color={0,0,127}));
   connect(boundary_MassFlow3.fluidPortOut, tubePumpNetwork_Linear3.fluidPortIn)
     annotation (Line(points={{147.8,-40},{142,-40}}, color={102,44,145}));
-  connect(tubePumpNetworkAlt4.fluidPortOut, twoPortVolume2.fluidPortIn)
+  connect(tubePumpNetwork4.fluidPortOut, twoPortVolume2.fluidPortIn)
     annotation (Line(points={{0.36,-40},{50,-40},{50,0},{60,0}}, color={102,
           44,145}));
   connect(tubePumpNetwork_Linear1.fluidPortOut, twoPortVolume2.fluidPortOut)

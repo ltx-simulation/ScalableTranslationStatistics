@@ -2,11 +2,11 @@ within ScalableTranslationStatistics.Fluid.Examples;
 model ScaleTranslationStatistics
   "baseline model with replaceable spring and mass components"
 
-  parameter Integer NL_equations[:] = 5*ones(3) "sizes of nonlinear equation systems"; //array(2,3,5,11,14,3,8,4,1,1,1,1,1,1,1,1,1,1,1,1,1);
+  parameter Integer NL_equations[:] = 5*ones(8) "sizes of nonlinear equation systems"; //array(2,3,5,11,14,3,8,4,1,1,1,1,1,1,1,1,1,1,1,1,1);
   parameter Integer Lin_equations[:]= {1, 14, 11, 2, 2, 5} "sizes of linear equation systems";
   parameter Integer num_volumes=8 "number of volumes with one continuous time state each";
 
-  parameter Integer num_Inp=4 "number of inputs";
+  parameter Integer num_Inp=10 "number of inputs";
   parameter Integer num_Outp=8 "number of outputs";
 
   parameter Integer num_const=4 "number of additional constants";
@@ -54,16 +54,18 @@ model ScaleTranslationStatistics
   Components.AssembledComponents.TubePumpNetwork_Linear linearTubePumpNetwork[num_Lin](
     numLinEquations=Lin_equations[:]) "linear tube pump network" annotation (Placement(transformation(extent={{58,22},
             {22,58}})));
-  Modelica.Blocks.Sources.Sine sine[num_Lin](each f=2);
+
+  // dummy input for massflow and pressure boundaries, if there are not enough input signals
+  Modelica.Blocks.Sources.Sine sine[num_Lin+NumSurplusNLEquations+1](each f=2);
   Components.LinearComponents.PressureLossTube_Linear_Sleepy sleepyStiffNetwork(delta_p_nom=delta_p_stiff, compiler_type = compilerType, waiting_time=sleeping_time)
                                                                                                                                                                     annotation (Placement(transformation(extent={{-48,-62},
             {-24,-38}})));
 
-  // Additional variables, constants, aliases
 protected
-  Integer constantValue[num_const] = 1:num_const                                                  "additional constants";
-  Real time_variable[num_time_var]                                                                "additional time dependent variables";
-  Real alias[num_alias]                                                      "additional aliases";
+  // Additional variables, constants, aliases
+  Integer constantValue[num_const] = 1:num_const "additional constants";
+  Real time_variable[num_time_var] "additional time dependent variables";
+  Real alias[num_alias] "additional aliases";
   parameter Boolean include_Jacobi[num_NL]=cat(1,{true for i in (1:min(num_NL,num_Jacobian))},{false for i in (1:max(0,num_NL-num_Jacobian))});
 
   // Additional parameters
@@ -72,6 +74,7 @@ protected
 
   // Parametrization helpers
   parameter Integer NumVariations = sum(array(i for i in 1:num_volumes-2)) "number of possible connection between different volumes";
+  parameter Integer NumSurplusNLEquations = max(0,num_NL-NumVariations) "number of nonlinear equation systems not located between volumes";
   parameter Integer num_Lin=size(Lin_equations,1) "number of linear equation systems";
   parameter Integer num_NL=size(NL_equations,1) "number of NL equation systems";
 
@@ -81,64 +84,67 @@ equation
   time_variable[:]=time*ones(num_time_var);
   alias=time_variable[1]*ones(num_alias);
 
-  // linear springs between all subsequent masses
+  // linear springs between all subsequent volumes
   for i in 1:num_volumes-2 loop
     connect(simplePressureLossTube[i].fluidPortOut,volume[i+1].fluidPortIn);
   end for;
   for i in 1:num_volumes-2 loop
     connect(simplePressureLossTube[i].fluidPortIn, volume[i].fluidPortOut);
   end for;
-  // first linear spring between first mass and fixation
 
-  // Nonlinear Spring Chains
-  // if enough NL-equations systems (num_NL) each mass is connected with each other
+  // Nonlinear tube-pump-networks
+  // if enough NL-equations systems (num_NL) each volume is connected with each other
   for i in 1:min(num_NL,NumVariations) loop
-    //Modelica.Utilities.Streams.print("connect mass"+String(Components.Functions.GetOneVariation_idx1(num_volumes-1,i))+" with mass"+ String(Components.Functions.GetOneVariation_idx2(num_volumes-1,i)));
+    //Modelica.Utilities.Streams.print("connect volume"+String(Components.Functions.GetOneVariation_idx1(num_volumes-1,i))+" with volume"+ String(Components.Functions.GetOneVariation_idx2(num_volumes-1,i)));
     connect( nonlinearTubePumpNetwork[i].fluidPortIn, volume[Utilities.GetOneVariation_idx1(num_volumes-1,i)].fluidPortOut);
     connect( nonlinearTubePumpNetwork[i].fluidPortOut, volume[Utilities.GetOneVariation_idx2(num_volumes-1,i)].fluidPortIn);
   end for;
+
   // if there are more NL-equation systems than combination of masses, connect the first mass with a fixation (one per NL-spring)
   if num_NL > NumVariations then
     for i in NumVariations+1:num_NL loop
       connect( nonlinearTubePumpNetwork[i].fluidPortOut,volume[1].fluidPortIn);
-      connect( nonlinearTubePumpNetwork[i].fluidPortIn,fixed[i-NumVariations].flange);
+      connect( nonlinearTubePumpNetwork[i].fluidPortIn,fixed[i-NumVariations].fluidPortOut);
     end for;
   end if;
 
-  // adapt the stiffness of the whole system by inserting a independent subsystem with largely different stiffness
-  // where the stiffness of the whole system is defined as stiffness := max(abs(eigenvalues))/min(abs(eigenvalues))
-
-  // apply forces on the masses and feed them with input signals
-
-  for i in 1:num_Lin loop
-    connect(sine[i].y,  fixed_linear[i].m_flow);
-  end for;
+  // apply the input signals as time dependent pressure boundaries
   for i in 1:min(num_Inp, num_NL-NumVariations+1) loop
     connect(inputs[i], fixed[i].p);
   end for;
 
-  for i in 1:num_Inp-num_NL+NumVariations-1 loop
-    connect(sine[i+num_Lin].y, fixed[i].p);
+  // if there are more boundaries than input signals, feed the boundaries with dummy sine curve
+  for i in 1:NumSurplusNLEquations-num_Inp+2 loop
+    connect(sine[i+num_Lin].y, fixed[i+min(num_Inp, num_NL-NumVariations+1)].p);
   end for;
 
-  // measure position of masses and declare then as output signals
+  // feed the mass_flow boundaries for the linear systems with dummy sine curves
+  for i in 1:num_Lin loop
+    connect(sine[i].y,  fixed_linear[i].m_flow);
+  end for;
+
+  // measure mass inside the volumes and declare it as output signals
   for i in 1:min(num_Outp,num_volumes) loop
     connect(volume[i].m_Volume, outputs[i]);
   end for;
 
+  // if there are more outputs than volumes, use the mass of the first volume multiple times as output
   if num_Outp >num_volumes then
-    for i in num_volumes:num_Outp loop
+    for i in num_volumes+1:num_Outp loop
       connect(volume[1].m_Volume, outputs[i]);
     end for;
   end if;
 
   // definition of linear systems:
-  // add linear springs: each one from the last mass to its own fixation
+  // add linear tube-pump-network: each network is connected the last volume with it own massflow boundary
   for i in 1:num_Lin loop
     connect(linearTubePumpNetwork[i].fluidPortIn,fixed_linear[i].fluidPortOut);
     connect(linearTubePumpNetwork[i].fluidPortOut,volume[end].fluidPortOut);
   end for;
 
+  // small system
+  // adapt the stiffness of the whole system by inserting a independent subsystem with largely different stiffness
+  // where the stiffness of the whole system is defined as stiffness := max(abs(eigenvalues))/min(abs(eigenvalues))
   connect(fixed[end].fluidPortOut, sleepyStiffNetwork.fluidPortIn);
   connect(sleepyStiffNetwork.fluidPortOut, volume[end].fluidPortIn);
 

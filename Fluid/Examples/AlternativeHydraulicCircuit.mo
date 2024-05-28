@@ -22,8 +22,7 @@ model AlternativeHydraulicCircuit
 
   Components.TwoPortVolume twoPortVolume[numStates]
     annotation (Placement(transformation(extent={{40,12},{60,32}})));
-  Components.AssembledComponents.TubePumpNetwork tubePumpNetwork1[0](
-      numNLequations=numNLequations, withNumericJacobian=insertJacobian)
+  Components.AssembledComponents.TubePumpNetwork tubePumpNetwork1[0]
     annotation (Placement(transformation(extent={{-70,-102},{-26,-58}})));
   Components.TwoPortVolume twoPortVolume1[0]
     annotation (Placement(transformation(extent={{36,-44},{56,-24}})));

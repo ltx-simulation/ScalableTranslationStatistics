@@ -1,6 +1,6 @@
 within ScalableTranslationStatistics;
 package Mechanics "mechanical representation of scalable translation statistics"
-
+  extends Modelica.Icons.Package;
 annotation(Icon(coordinateSystem(preserveAspectRatio=false), graphics={
         Ellipse(
           extent={{-60,60},{60,-60}},

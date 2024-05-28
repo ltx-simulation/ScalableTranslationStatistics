@@ -1,6 +1,6 @@
 within ScalableTranslationStatistics;
 package Fluid "fluid representation of scalable translation statistics"
-
+  extends Modelica.Icons.Package;
   annotation (Icon(graphics={
         Line(
           points={{-98,48},{-78,68},{-60,78},{-34,78},{-2,56},{20,38},{36,30},{
