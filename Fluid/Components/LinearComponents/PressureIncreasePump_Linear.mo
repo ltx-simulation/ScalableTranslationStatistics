@@ -7,7 +7,8 @@ model PressureIncreasePump_Linear
 
   parameter Real delta_p_nom = 200000 "nominal pressure increase in pump";
   parameter Real mdot_nom = 0.5 "nominal mass flow art nominal pressure increase";
-  Real vdot_nom = mdot_nom/CalcDensity(fluidPortIn.p) "nominal volume flow";
+  parameter Real rho = 1 "constant density of the fluid";
+  Real vdot_nom = mdot_nom/rho "nominal volume flow";
   parameter Real n_nom = 10 "nominal rotational speed";
   parameter Boolean use_input = false;
   parameter Real n_const = 10 "constant rotational speed if no input given" annotation(Dialog(enable = not use_input));
@@ -23,8 +24,6 @@ model PressureIncreasePump_Linear
         extent={{-20,-20},{20,20}},
         rotation=270,
         origin={0,108})));
-  replaceable function CalcDensity = Media.BaseDensityFunction
-    constrainedby Media.BaseDensityFunction                                           annotation(choicesAllMatching=true);
 protected
  Modelica.Blocks.Interfaces.RealInput n_internal;
 
@@ -39,7 +38,7 @@ equation
   fluidPortIn.p=fluidPortOut.p-delta_p;
 
   // volume flow calculated from mass flow
-  vdot = mdot/CalcDensity(fluidPortOut.p);
+  vdot = mdot/rho;
 
   // mass flow - pressure drop relation
   delta_p / delta_p_nom = (n_internal/n_nom) *

@@ -14,7 +14,7 @@ model ScaleTranslationStatistics
   parameter Integer num_dep_param=3 "number of additional dependant parameters";
   parameter Integer num_time_var=1 "number of additional time-varying variables";
   parameter Integer num_alias=1 "number of additional aliases";
-  parameter Integer num_Jacobian = 7 "number of numerical jacobians";
+  parameter Integer num_Jacobian = 0 "number of numerical jacobians";
 
 
 

@@ -13,8 +13,11 @@ protected
   Modelica.Blocks.Interfaces.RealInput m_flow_internal;
 equation
   // fixed mass flow used as boundary
-  fluidPortOut.m_flow= if use_input then m_flow_internal else m_flow_const;
+  fluidPortOut.m_flow =  m_flow_internal;
   connect(m_flow,m_flow_internal);
+  if not use_input then
+    m_flow_internal = m_flow_const;
+  end if;
   annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={
           Rectangle(
           extent={{0,80},{20,-80}},

@@ -14,13 +14,17 @@ protected
 
 equation
   // set pressure boundary
-  fluidPortOut.p =  if not use_input then p_const else p_internal;
+  fluidPortOut.p =  p_internal;
 
   // if no mass flow across the boundry is allowed, set m_flow to zero.
   if not allow_massflow then
     fluidPortOut.m_flow = 0;
   end if;
   connect(p,p_internal);
+  if not use_input then
+    p_internal= p_const;
+  end if;
+
   annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={
           Rectangle(
           extent={{0,80},{20,-80}},
