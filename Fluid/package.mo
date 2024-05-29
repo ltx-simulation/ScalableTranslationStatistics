@@ -20,7 +20,7 @@ package Fluid "fluid representation of scalable translation statistics"
 <p>This is a fluid representation of the Scalable Translation Statistics model.</p>
 <p><br><u><span style=\"color: #ee2e2f;\">ATTENTION:</span></u> The Fluid Components defined in this package are strongly simplified and <b>do not represent real physics</b> ! They are intended to demonstrate numerical problems in a physically understandable matter. </p>
 <p><br>The fluid representation is almoust analogous to the mechanical representation.</p>
-<p><br>A system of equations is created by a pump and N parallel tubes, where N corresponds the size of the system. Both - pump and tubes - have a nonlinear massflow-pressuredrop-relationship. In case of linear systems the pump is also parallel to the tubes, while in nonlinear systems the pump is in series to the parallel tubes. By an assertation in the pump model, nonlinear equation systems with a numerical Jacobian can be created.</p>
+<p><br>A system of equations is created by a pump and N parallel tubes, where N corresponds the size of the system. Both - pump and tubes - have a nonlinear massflow-pressuredrop-relationship. In case of linear systems there are parallel pumps instead of tubes. By an assertation in the pump model, nonlinear equation systems with a numerical Jacobian can be created.</p>
 <p>The continuous time states are represented by a volume with variable mass. In contrary to the mass in the mechanical representation the volume has only one state variable.</p>
 <p>The model for the parametrization:</p>
 <p><span style=\"color: #662c91;\">NL_equations = {2,1,5,1,2,2};</span></p>

@@ -2,3 +2,4 @@ BaseDensityFunction
 CalcDensitySimple
 CalcDensityPhaseChange
 AssertedDensity
+CalcDensityIdealGas

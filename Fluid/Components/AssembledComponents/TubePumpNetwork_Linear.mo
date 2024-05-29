@@ -4,10 +4,11 @@ model TubePumpNetwork_Linear
   Modelica.Blocks.Sources.Sine sine(f=2, offset=1)
     annotation (Placement(transformation(extent={{-140,74},{-120,94}})));
   Components.LinearComponents.PressureIncreasePump_Linear
-    pressureIncreasePump_Linear(use_input=true)
+    pressureIncreasePump_Linear(use_input=true, redeclare replaceable function
+      CalcDensity =
+        ScalableTranslationStatistics.Fluid.Media.CalcDensityIdealGas)
     annotation (Placement(transformation(extent={{-48,30},{-28,50}})));
-  Components.AssembledComponents.ParallelResistors_Linear
-    parallelResistors_Linear(nParallel=numLinEquations)
+  ParallelPumps_Linear parallelResistors_Linear(nParallel=numLinEquations)
     annotation (Placement(transformation(extent={{-52,-10},{-32,10}})));
   Interfaces.FluidPortIn fluidPortIn "inlet port"
     annotation (Placement(transformation(extent={{-110,-10},{-90,10}})));

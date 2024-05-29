@@ -20,7 +20,7 @@ model ManuallyBuiltExample
     tubePumpNetwork1(numNLequations=1, withNumericJacobian=false)
     annotation (Placement(transformation(extent={{12,26},{48,62}})));
   ScalableTranslationStatistics.Fluid.Components.AssembledComponents.TubePumpNetwork
-    tubePumpNetwork4(numNLequations=4, withNumericJacobian=true)
+    tubePumpNetwork4(numNLequations=5, withNumericJacobian=true)
     annotation (Placement(transformation(extent={{-36,-58},{0,-22}})));
   ScalableTranslationStatistics.Fluid.Components.AssembledComponents.TubePumpNetwork
     tubePumpNetwork5(numNLequations=1)
@@ -46,24 +46,24 @@ model ManuallyBuiltExample
     annotation (Placement(transformation(extent={{-198,-6},{-186,6}})));
   Modelica.Blocks.Sources.Sine sine2(f=2)
     annotation (Placement(transformation(extent={{-198,-46},{-186,-34}})));
-  ScalableTranslationStatistics.Fluid.Components.AssembledComponents.TubePumpNetwork_Linear
-    tubePumpNetwork_Linear1(numLinEquations=2)
+  Components.AssembledComponents.ParallelPumps_Linear
+    parallelPumps_Linear(nParallel=2)
     annotation (Placement(transformation(extent={{140,20},{102,58}})));
   ScalableTranslationStatistics.Fluid.Components.Boundaries.Boundary_MassFlow
     boundary_MassFlow1(use_input=true)
     annotation (Placement(transformation(extent={{168,30},{148,50}})));
   Modelica.Blocks.Sources.Sine sine5(f=2)
     annotation (Placement(transformation(extent={{186,34},{174,46}})));
-  ScalableTranslationStatistics.Fluid.Components.AssembledComponents.TubePumpNetwork_Linear
-    tubePumpNetwork_Linear2(numLinEquations=3)
+  Components.AssembledComponents.ParallelPumps_Linear
+    parallelPumps_Linear1(nParallel=3)
     annotation (Placement(transformation(extent={{142,-20},{102,20}})));
   ScalableTranslationStatistics.Fluid.Components.Boundaries.Boundary_MassFlow
     boundary_MassFlow2(use_input=true)
     annotation (Placement(transformation(extent={{168,-10},{148,10}})));
   Modelica.Blocks.Sources.Sine sine6(f=2)
     annotation (Placement(transformation(extent={{186,-6},{174,6}})));
-  ScalableTranslationStatistics.Fluid.Components.AssembledComponents.TubePumpNetwork_Linear
-    tubePumpNetwork_Linear3(numLinEquations=2)
+  Components.AssembledComponents.ParallelPumps_Linear
+    parallelPumps_Linear2(nParallel=2)
     annotation (Placement(transformation(extent={{142,-20},{102,-60}})));
   ScalableTranslationStatistics.Fluid.Components.Boundaries.Boundary_MassFlow
     boundary_MassFlow3(use_input=true)
@@ -124,29 +124,30 @@ equation
     annotation (Line(points={{-185.4,0},{-176.4,0}},   color={0,0,127}));
   connect(sine2.y, boundary_Pressure2.p)
     annotation (Line(points={{-185.4,-40},{-176.4,-40}}, color={0,0,127}));
-  connect(boundary_MassFlow1.fluidPortOut, tubePumpNetwork_Linear1.fluidPortIn)
-    annotation (Line(points={{147.8,40},{147.8,39},{140,39}}, color={102,44,145}));
+  connect(boundary_MassFlow1.fluidPortOut, parallelPumps_Linear.fluidPortIn)
+    annotation (Line(points={{147.8,40},{147.8,39},{140.38,39}}, color={102,44,
+          145}));
   connect(sine5.y, boundary_MassFlow1.m_flow)
     annotation (Line(points={{173.4,40},{160.4,40}}, color={0,0,127}));
-  connect(boundary_MassFlow2.fluidPortOut, tubePumpNetwork_Linear2.fluidPortIn)
-    annotation (Line(points={{147.8,0},{142,0}},     color={102,44,145}));
+  connect(boundary_MassFlow2.fluidPortOut, parallelPumps_Linear1.fluidPortIn)
+    annotation (Line(points={{147.8,0},{142.4,0}}, color={102,44,145}));
   connect(sine6.y, boundary_MassFlow2.m_flow)
     annotation (Line(points={{173.4,0},{160.4,0}},     color={0,0,127}));
   connect(sine7.y, boundary_MassFlow3.m_flow)
     annotation (Line(points={{173.4,-40},{160.4,-40}}, color={0,0,127}));
-  connect(boundary_MassFlow3.fluidPortOut, tubePumpNetwork_Linear3.fluidPortIn)
-    annotation (Line(points={{147.8,-40},{142,-40}}, color={102,44,145}));
+  connect(boundary_MassFlow3.fluidPortOut, parallelPumps_Linear2.fluidPortIn)
+    annotation (Line(points={{147.8,-40},{142.4,-40}}, color={102,44,145}));
   connect(tubePumpNetwork4.fluidPortOut, twoPortVolume2.fluidPortIn)
     annotation (Line(points={{0.36,-40},{50,-40},{50,0},{60,0}}, color={102,
           44,145}));
-  connect(tubePumpNetwork_Linear1.fluidPortOut, twoPortVolume2.fluidPortOut)
-    annotation (Line(points={{101.62,39},{90,39},{90,0},{80,0}}, color={102,
-          44,145}));
-  connect(tubePumpNetwork_Linear2.fluidPortOut, twoPortVolume2.fluidPortOut)
+  connect(parallelPumps_Linear.fluidPortOut, twoPortVolume2.fluidPortOut)
+    annotation (Line(points={{101.62,39},{90,39},{90,0},{80,0}}, color={102,44,
+          145}));
+  connect(parallelPumps_Linear1.fluidPortOut, twoPortVolume2.fluidPortOut)
     annotation (Line(points={{101.6,0},{80,0}}, color={102,44,145}));
-  connect(tubePumpNetwork_Linear3.fluidPortOut, twoPortVolume2.fluidPortOut)
-    annotation (Line(points={{101.6,-40},{90,-40},{90,0},{80,0}}, color={102,
-          44,145}));
+  connect(parallelPumps_Linear2.fluidPortOut, twoPortVolume2.fluidPortOut)
+    annotation (Line(points={{101.6,-40},{90,-40},{90,0},{80,0}}, color={102,44,
+          145}));
   connect(sine3.y,boundary_Pressure3. p)
     annotation (Line(points={{-185.4,-90},{-176.4,-90}}, color={0,0,127}));
   connect(boundary_Pressure3.fluidPortOut, pressureLossTube_Linear_Sleepy.fluidPortOut)

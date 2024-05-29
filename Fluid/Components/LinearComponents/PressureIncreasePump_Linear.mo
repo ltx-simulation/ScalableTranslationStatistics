@@ -24,7 +24,10 @@ model PressureIncreasePump_Linear
         extent={{-20,-20},{20,20}},
         rotation=270,
         origin={0,108})));
-protected
+  /*replaceable function CalcDensity = Media.BaseDensityFunction
+    constrainedby Media.BaseDensityFunction                                           annotation(choicesAllMatching=true);
+    */
+    protected
  Modelica.Blocks.Interfaces.RealInput n_internal;
 
 equation

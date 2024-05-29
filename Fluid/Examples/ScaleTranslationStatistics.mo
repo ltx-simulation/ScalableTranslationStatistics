@@ -50,9 +50,9 @@ model ScaleTranslationStatistics
                                                                                                                                                    annotation (Placement(transformation(extent={{-58,22},
             {-22,58}})));
 
-  //   linear  pump tube networks
-  Components.AssembledComponents.TubePumpNetwork_Linear linearTubePumpNetwork[num_Lin](
-    numLinEquations=Lin_equations[:]) "linear tube pump network" annotation (Placement(transformation(extent={{58,22},
+  //   linear parallel pump networks
+  Components.AssembledComponents.ParallelPumps_Linear   linearTubePumpNetwork[num_Lin]( nParallel = Lin_equations)
+                                      "linear tube pump network" annotation (Placement(transformation(extent={{58,22},
             {22,58}})));
 
   // dummy input for massflow and pressure boundaries, if there are not enough input signals
@@ -245,8 +245,8 @@ equation
 <p><u><b><span style=\"font-size: 12pt;\">remarks on the parameters: </span></b></u></p>
 <ul>
 <li><i><b>num_volumes:</b></i> each volume has one continuous state variable (mass in the volume), so the number continuous states by this parameter </li>
-<li><i><b>Lin_equations:</b></i> Linear equation systems are created by parallel tubes: 3 parallel tubes together with an also parallel pump gives a system of three linear equations after the tool-internal manipulation. </li>
-<p>[One linear equation is not possible, cause it can be resolved by the manipulation, for zero linear equations type one, otherwise it disappears in the statistics ] This pump-tube network is connects the last volume with a mass-flow boundary. </p>
+<li><i><b>Lin_equations:</b></i> Linear equation systems are created by parallel pumps with linear characteristics: 3 parallel pumps give a system of three linear equations after the tool-internal manipulation. </li>
+<p>[One linear equation is not possible, cause it can be resolved by the manipulation, for zero linear equations type one, otherwise it disappears in the statistics ] This pump network connects the last volume with a mass-flow boundary. </p>
 <li><i><b>NL_equations:</b></i> nonlinear equation systems are created by pump-tube networks with a pump followed by N parallel tubes, where N is the number of equations in the nonlinear system. Pump and tubes have a nonlinear massflow-pressuredrop-relationship.</li>
 <p>In opposite to linear equation system there are no limitations on the values </p>
 <p>The nonlinear pump-tube-networks connect all possible combinations of different volumes (e.g. for 3 volumes : v1-v2, v2-v3 and v1-v3). </p>
@@ -258,7 +258,7 @@ equation
 <li><i><b>num_free_param, num_const :</b></i> All additional constants and free parameters have the value 1 </li>
 <li><i><b>num_dep_param:</b></i> All additional dependent parameters depend on the massflow-pressuredrop relationship constant (e.g. 0.7 bar pressure drop at 1 kg/s). </li>
 <li><i><b>num_time_var:</b></i> additional time-varying variables are copies of the variable &bdquo;time&ldquo; </li>
-<li><i><b>delta_p_stiff:</b></i>  stiff massflow-pressuredrop relationship constant used in the small subsystem. So this subsystem has an other stiffness than the big system, offering the possibility to make the whole system stiff. Therefore choose a value largly different than 1e6 for delta_p_stiff.</li>
+<li><i><b>delta_p_stiff:</b></i> stiff massflow-pressuredrop relationship constant used in the small subsystem. So this subsystem has an other stiffness than the big system, offering the possibility to make the whole system stiff. Therefore choose a value largly different than 1e6 for delta_p_stiff.</li>
 <li><i><b>sleeping_time:</b></i> each time the equation of the linear tube in the small subsystem (see delta_p_stiff) will be executed, the execution will pause this time [given in milliseconds].<br>In this way longer simulation times can be imitated </li>
 <li><i><b>compilerType:</b></i> Type of the c-compiler used (&quot;1&quot; for Visual Studio and &quot;2&quot; for gcc). This information is necessary because the implementation of the sleeping routine depends on the compiler </li>
 </ul>
