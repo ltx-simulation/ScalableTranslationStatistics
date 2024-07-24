@@ -10,7 +10,7 @@ The ScalableTranslationStatistics Library was inspired by the [ScalableTestSuite
 
 This is the aim of ScalableTranslationStatistics: It offers one principal Modelica model to scale the metrics given in Dymola's translation statistics, such as linear and nonlinear systems of equations or continuous time states. Their number of occurrences in the model are fully parametrizable by the user of the model. This makes it possible to scale for example the equation system in different aspects evoking different numerical behavior.
 
-![Principle structure of the scalable model](https://github.com/ltx-simulation/ScalableTranslationStatistics/blob/main/Resources/Example_ScalableModel.png)
+![Principle structure of the scalable mechanical model](https://github.com/ltx-simulation/ScalableTranslationStatistics/blob/main/Resources/Example_ScalableModel.png)
 
 In addition several add-Ons for the model are offered, regarding further topics of model-complexity such as sparsity, stiffness, external code, events, etc. .
 
@@ -19,7 +19,15 @@ The library is developed in Dymola but also works in other Modelica tools (teste
 
 ## Current release
 
-1.1.0
+1.2.0 
+
+Release Notes:
+
+- adding scalable models from the physical domain of fluid-mechanics to the library. Therefore the library is split into the two major subpackages "Mechanics" and "Fluid".
+- A scalable fluid model can look like this:
+- ![Principle structure of the scalable fluid model](https://github.com/ltx-simulation/ScalableTranslationStatistics/blob/dev/Resources/Example_FluidModel.png)
+
+
 
 ## Development and contribution
 The library was developed by LTX Simulation GmbH
