@@ -1,4 +1,4 @@
-package ScalableTranslationStatistics
+package ScalableTranslationStatistics "Scalable Translation Statistics - Version 1.1.0"
 
 
 
@@ -29,5 +29,5 @@ The following effects are additionally considered in these Examples:
 <li><a href=modelica://ScalableTranslationStatistics.Examples.Test_STS_Friction>Friction </a>: Instead of a &quot; flying&quot; mass, the mass is slinding on the ground with friction and has hard stops (using <a href=modelica://Modelica.Mechanics.Translational.Components.MassWithStopAndFriction>MassWithStopAndFriction </a>)</li>
 <li><a href=modelica://ScalableTranslationStatistics.Examples.Test_STS_numerizedEvents>numerizedEvents</a>:Parametrizable number of events per second simulation time; realized by turning on and off to apply a force on the single mass in the small system</li>
 </ul>
-</html>"), uses(Modelica(version="4.0.0")));
+</html>"), uses(Modelica(version="4.0.0")),version= "1.1.0");
 end ScalableTranslationStatistics;
