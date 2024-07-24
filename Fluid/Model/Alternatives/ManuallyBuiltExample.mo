@@ -1,4 +1,4 @@
-within ScalableTranslationStatistics.Fluid.Examples;
+within ScalableTranslationStatistics.Fluid.Model.Alternatives;
 model ManuallyBuiltExample
   extends Modelica.Icons.Example;
   ScalableTranslationStatistics.Fluid.Components.TwoPortVolume twoPortVolume

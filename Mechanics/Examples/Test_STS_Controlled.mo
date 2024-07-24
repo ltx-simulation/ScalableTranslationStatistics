@@ -27,7 +27,7 @@ model Test_STS_Controlled
     each Nd=10,
     each initType=Modelica.Blocks.Types.Init.NoInit)
     annotation (Placement(transformation(extent={{-40,-36},{-60,-16}})));
-  Mechanics.Components.Subcomponents.InputSignals inputSignals
+  Utilities.InputSignals inputSignals
     annotation (Placement(transformation(extent={{-90,32},{-70,52}})));
   Modelica.Blocks.Math.Add add[Nin]
     annotation (Placement(transformation(extent={{-50,26},{-30,46}})));

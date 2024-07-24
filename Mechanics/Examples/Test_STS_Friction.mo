@@ -16,7 +16,7 @@ model Test_STS_Friction
   Modelica.Blocks.Interfaces.RealOutput outputs[Nout] "position signal outputs" annotation (Placement(transformation(extent={{96,-10},
             {116,10}})));
 
-  Mechanics.Components.Subcomponents.InputSignals inputSignals
+  Utilities.InputSignals inputSignals
     annotation (Placement(transformation(extent={{-88,-10},{-68,10}})));
 equation
   connect(inputSignals.outputs[1:min(Nin, 10)], scalableModelicaModel.inputs[1:

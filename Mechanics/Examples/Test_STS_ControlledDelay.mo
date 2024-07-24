@@ -33,7 +33,7 @@ model Test_STS_ControlledDelay
         origin={-30,-34})));
   Modelica.Blocks.Math.Add add[Nin]
     annotation (Placement(transformation(extent={{-56,44},{-36,64}})));
-  Mechanics.Components.Subcomponents.InputSignals inputSignals
+  Utilities.InputSignals inputSignals
     annotation (Placement(transformation(extent={{-90,50},{-70,70}})));
 equation
   for i in 1:Nout loop

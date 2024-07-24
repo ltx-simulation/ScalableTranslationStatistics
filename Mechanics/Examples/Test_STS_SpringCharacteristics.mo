@@ -17,7 +17,7 @@ model Test_STS_SpringCharacteristics
   Modelica.Blocks.Interfaces.RealOutput outputs[Nout] "position signal outputs" annotation (Placement(transformation(extent={{96,-10},
             {116,10}})));
 
-  Mechanics.Components.Subcomponents.InputSignals inputSignals
+  Utilities.InputSignals inputSignals
     annotation (Placement(transformation(extent={{-84,-12},{-64,12}})));
 equation
 

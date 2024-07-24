@@ -1,4 +1,4 @@
-within ScalableTranslationStatistics.Fluid.Examples;
+within ScalableTranslationStatistics.Fluid.Model.Alternatives;
 model AlternativeHydraulicCircuit
   "Scale Nonlinear Systems of euqations for a liquid circuit"
   extends Modelica.Icons.Example;

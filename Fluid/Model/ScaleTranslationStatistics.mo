@@ -1,4 +1,4 @@
-within ScalableTranslationStatistics.Fluid.Examples;
+within ScalableTranslationStatistics.Fluid.Model;
 model ScaleTranslationStatistics
   "baseline model with replaceable spring and mass components"
 
@@ -16,10 +16,8 @@ model ScaleTranslationStatistics
   parameter Integer num_alias=1 "number of additional aliases";
   parameter Integer num_Jacobian = 0 "number of numerical jacobians";
 
-
-
   // Parametrization of single mass spring subsystem
-  parameter Real delta_p_stiff(final min=0, start=0)=1e12 "Stiffness of mass-flow pressure relationship";
+  parameter Real delta_p_stiff(final min=0, start=0)=1e9 "Stiffness of mass-flow pressure relationship";
   parameter Real sleeping_time = 5 "time in [ms], the model will sleep in each time integration step to imitate longer simulation times ";
   parameter Integer compilerType = 1 "1 = Visual Studio;  2= GCC";
 
@@ -56,7 +54,7 @@ model ScaleTranslationStatistics
             {22,58}})));
 
   // dummy input for massflow and pressure boundaries, if there are not enough input signals
-  Modelica.Blocks.Sources.Sine sine[num_Lin+NumSurplusNLEquations+1](each f=2);
+  Modelica.Blocks.Sources.Sine sine[num_Lin+NumSurplusNLEquations+2](each f=2);
   Components.LinearComponents.PressureLossTube_Linear_Sleepy sleepyStiffNetwork(delta_p_nom=delta_p_stiff, compiler_type = compilerType, waiting_time=sleeping_time)
                                                                                                                                                                     annotation (Placement(transformation(extent={{-48,-62},
             {-24,-38}})));
@@ -258,7 +256,7 @@ equation
 <li><i><b>num_free_param, num_const :</b></i> All additional constants and free parameters have the value 1 </li>
 <li><i><b>num_dep_param:</b></i> All additional dependent parameters depend on the massflow-pressuredrop relationship constant (e.g. 0.7 bar pressure drop at 1 kg/s). </li>
 <li><i><b>num_time_var:</b></i> additional time-varying variables are copies of the variable &bdquo;time&ldquo; </li>
-<li><i><b>delta_p_stiff:</b></i> stiff massflow-pressuredrop relationship constant used in the small subsystem. So this subsystem has an other stiffness than the big system, offering the possibility to make the whole system stiff. Therefore choose a value largly different than 1e6 for delta_p_stiff.</li>
+<li><i><b>delta_p_stiff:</b></i> stiff massflow-pressuredrop relationship constant used in the small subsystem.</li>
 <li><i><b>sleeping_time:</b></i> each time the equation of the linear tube in the small subsystem (see delta_p_stiff) will be executed, the execution will pause this time [given in milliseconds].<br>In this way longer simulation times can be imitated </li>
 <li><i><b>compilerType:</b></i> Type of the c-compiler used (&quot;1&quot; for Visual Studio and &quot;2&quot; for gcc). This information is necessary because the implementation of the sleeping routine depends on the compiler </li>
 </ul>

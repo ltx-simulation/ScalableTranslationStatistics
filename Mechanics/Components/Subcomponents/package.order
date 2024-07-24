@@ -4,6 +4,5 @@ CharacteristicsSpring
 DiscreteStiffnessSpring
 DiscreteSleepySpring
 LinearSleepySpring
-InputSignals
 TwoDimSpring
 TwoDimNLSpring
