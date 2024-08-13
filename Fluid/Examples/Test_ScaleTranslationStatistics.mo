@@ -11,7 +11,9 @@ model Test_ScaleTranslationStatistics
   Fluid.Model.ScaleTranslationStatistics scalableModelicaModel(
     delta_p_stiff=delta_p_stiff,
     NL_equations=num_NL_equations*ones(num_NL_equation_systems),
-    num_volumes=num_volumes)
+    num_volumes=num_volumes,
+    num_Inp=Nin,
+    num_Outp=Nout)
     annotation (Placement(transformation(extent={{-28,-34},{40,34}})));
   Utilities.InputSignals inputSignals
     annotation (Placement(transformation(extent={{-98,-18},{-64,18}})));

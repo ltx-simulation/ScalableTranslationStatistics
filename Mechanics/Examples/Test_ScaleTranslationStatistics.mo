@@ -11,7 +11,9 @@ model Test_ScaleTranslationStatistics "ScaleTranslationStatistics with arbitrary
     c=100,
     c_stiff=c_stiff,
     NL_equations=num_NL_equations*ones(num_NL_equation_systems),
-    num_masses=num_masses)
+    num_masses=num_masses,
+    num_Inp=Nin,
+    num_Outp=Nout)
     annotation (Placement(transformation(extent={{-28,-34},{40,34}})));
   Utilities.InputSignals inputSignals
     annotation (Placement(transformation(extent={{-98,-18},{-64,18}})));
