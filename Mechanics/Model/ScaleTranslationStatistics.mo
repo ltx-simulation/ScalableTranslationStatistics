@@ -23,7 +23,7 @@ model ScaleTranslationStatistics
 
   // Parametrization of single mass spring subsystem
   parameter Modelica.Units.SI.TranslationalSpringConstant c_stiff(final min=0, start=0)=1e6 "Spring constant for a spring in a separate stiff subsystem";
-  parameter Real sleeping_time = 0 "time in [ms], the model will sleep in each time integration step to imitate longer simulation times ";
+  parameter Integer sleeping_time = 1 "time in [ms], the model will sleep in each time integration step to imitate longer simulation times ";
   parameter Integer compilerType = 1 "1 = Visual Studio;  2= GCC";
 
   // Inputs and Outputs

@@ -11,7 +11,7 @@ model STS_PDESystem
       num_springs=NL_equations,
       insert_Jacobian=include_Jacobi[:]),
     redeclare Mechanics.Components.Subcomponents.LinearSleepySpring
-      stiffSleepySpring);
+      stiffSleepySpring(compiler_type=compilerType, waiting_time=sleeping_time));
 
       annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),

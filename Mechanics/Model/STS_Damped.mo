@@ -13,7 +13,7 @@ model STS_Damped
        - 1](each m=m),
     stiffMass(v(start=1), s(start=1)),
     redeclare Mechanics.Components.Subcomponents.LinearSleepySpring
-      stiffSleepySpring);
+      stiffSleepySpring(compiler_type=compilerType, waiting_time=sleeping_time));
     parameter Modelica.Units.SI.TranslationalDampingConstant d(final min=0, start=0)=5 "Damping constant of the damper parallel to spring chain";
       annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),

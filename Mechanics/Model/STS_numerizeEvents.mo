@@ -11,7 +11,7 @@ model STS_numerizeEvents
     redeclare Modelica.Mechanics.Translational.Components.Mass mass[num_masses
        - 1](each m=m),
     redeclare Mechanics.Components.Subcomponents.LinearSleepySpring
-      stiffSleepySpring);
+      stiffSleepySpring(compiler_type=compilerType, waiting_time=sleeping_time));
 
   parameter Integer NumEvents= 100 "number of state events per second";
   Modelica.Mechanics.Translational.Sources.Force singleForce "force on the single mass" annotation (Placement(transformation(extent={{38,-40},

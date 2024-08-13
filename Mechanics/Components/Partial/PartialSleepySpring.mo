@@ -5,7 +5,7 @@ partial model PartialSleepySpring
   parameter Modelica.Units.SI.TranslationalSpringConstant c = 1 "stiffness of the spring; The real stiffness is alternating between this stiffness and 10% of this value";
   parameter Modelica.Units.SI.Position s_unstreched = 0 "unstreched length of the spring";
   parameter Integer compiler_type = 1 "1=visual studio, 2=gcc";
-  parameter Real waiting_time = 50 "waiting time in milliseconds";
+  parameter Integer waiting_time = 50 "waiting time in milliseconds";
 protected
   function WaitingVS = Utilities.SleepVS "waiting function for Visual Studio Compiler";
   function WaitingGCC = Utilities.SleepGCC

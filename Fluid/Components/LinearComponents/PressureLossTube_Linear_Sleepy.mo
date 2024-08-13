@@ -12,7 +12,7 @@ model PressureLossTube_Linear_Sleepy
   Interfaces.FluidPortIn fluidPortOut "outlet port"
     annotation (Placement(transformation(extent={{-108,-10},{-88,10}})));
   parameter Integer compiler_type = 1 "1=visual studio, 2=gcc";
-  parameter Real waiting_time = 50 "waiting time in milliseconds";
+  parameter Integer waiting_time = 50 "waiting time in milliseconds";
 protected
   function WaitingVS = Utilities.SleepVS "waiting function for Visual Studio Compiler";
   function WaitingGCC =Utilities.SleepGCC "waiting function for gcc Compiler";

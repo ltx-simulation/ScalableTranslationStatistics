@@ -12,7 +12,7 @@ model STS_springCharacteristics
     redeclare Modelica.Mechanics.Translational.Components.Mass mass[num_masses
        - 1](each m=m),
     redeclare Mechanics.Components.Subcomponents.LinearSleepySpring
-      stiffSleepySpring);
+      stiffSleepySpring(compiler_type=compilerType, waiting_time=sleeping_time));
   parameter String StiffnessFile="modelica://ScalableTranslationStatistics/Resources/SpringStiffness.txt" "Filename of the characteristics of the spring stiffness for all springs in the mass-spring system";
   parameter String tableName="c_spring";
 

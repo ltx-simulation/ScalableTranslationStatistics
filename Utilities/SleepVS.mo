@@ -1,6 +1,6 @@
 within ScalableTranslationStatistics.Utilities;
 function SleepVS
-  input Real waitingTime "waiting time in mikroseconds";
+  input Integer waitingTime "waiting time in mikroseconds";
   external "C" msleep(waitingTime) annotation(Include="#include <sleep_vs.c>", IncludeDirectory=
         "modelica://ScalableTranslationStatistics/Resources");
 

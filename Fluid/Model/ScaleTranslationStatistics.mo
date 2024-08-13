@@ -18,7 +18,7 @@ model ScaleTranslationStatistics
 
   // Parametrization of single mass spring subsystem
   parameter Real delta_p_stiff(final min=0, start=0)=1e9 "Stiffness of mass-flow pressure relationship";
-  parameter Real sleeping_time = 5 "time in [ms], the model will sleep in each time integration step to imitate longer simulation times ";
+  parameter Integer sleeping_time = 5 "time in [ms], the model will sleep in each time integration step to imitate longer simulation times ";
   parameter Integer compilerType = 1 "1 = Visual Studio;  2= GCC";
 
   // Inputs and Outputs

@@ -12,7 +12,7 @@ model STS_DiscreteSpring
        - 1](each m=m),
     redeclare
       ScalableTranslationStatistics.Mechanics.Components.Subcomponents.DiscreteSleepySpring
-      stiffSleepySpring(scale_steps=0.1, stiffness_steps=10),
+      stiffSleepySpring(scale_steps=0.1, stiffness_steps=10,compiler_type=compilerType, waiting_time=sleeping_time),
     stiffMass(v(start=1)),
     c_stiff=10);
       annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(

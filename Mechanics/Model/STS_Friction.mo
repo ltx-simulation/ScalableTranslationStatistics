@@ -36,7 +36,7 @@ model STS_Friction "ScaleTranslationStatistics with restricted sliding mass"
       each F_Stribeck=0.5,
       each fexp=0.1),
     redeclare Mechanics.Components.Subcomponents.LinearSleepySpring
-      stiffSleepySpring);
+      stiffSleepySpring(compiler_type=compilerType, waiting_time=sleeping_time));
       annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),
         experiment(
