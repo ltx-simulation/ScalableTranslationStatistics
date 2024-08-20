@@ -1,6 +1,6 @@
 #include <windows.h>
 
-int msleep(int usec) { 
+void msleep(int usec) { 
     HANDLE timer; 
     LARGE_INTEGER ft; 
 
