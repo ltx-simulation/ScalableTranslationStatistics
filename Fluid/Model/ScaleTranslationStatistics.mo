@@ -18,7 +18,7 @@ model ScaleTranslationStatistics
 
   // Parametrization of single mass spring subsystem
   parameter Real delta_p_stiff(final min=0, start=0)=1e9 "Stiffness of mass-flow pressure relationship";
-  parameter Integer sleeping_time = 5 "time in [ms], the model will sleep in each time integration step to imitate longer simulation times ";
+  parameter Integer sleeping_time = 0 "time in [ms], the model will sleep in each time integration step to imitate longer simulation times ";
   parameter Integer compilerType = 1 "1 = Visual Studio;  2= GCC";
 
   // Inputs and Outputs
@@ -34,7 +34,7 @@ model ScaleTranslationStatistics
             {10,50}})));
 
   // Fixations / Boundaries
-  Components.Boundaries.Boundary_Pressure fixed[num_NL-NumVariations+2](each use_input=true) if num_NL>NumVariations "fixation for surplus nonlinear spring chains" annotation (Placement(transformation(extent={{-90,30},
+  Components.Boundaries.Boundary_Pressure fixed[num_NL-NumVariations+2](each use_input=true) if num_NL>NumVariations-2 "fixation for surplus nonlinear spring chains" annotation (Placement(transformation(extent={{-90,30},
             {-70,50}})));
   Components.Boundaries.Boundary_MassFlow fixed_linear[num_Lin](each use_input=true) "fixation for linear spring chains" annotation (Placement(transformation(extent={{90,30},
             {70,50}})));
@@ -143,7 +143,9 @@ equation
   // small system
   // adapt the stiffness of the whole system by inserting a independent subsystem with largely different stiffness
   // where the stiffness of the whole system is defined as stiffness := max(abs(eigenvalues))/min(abs(eigenvalues))
-  connect(fixed[end].fluidPortOut, sleepyStiffNetwork.fluidPortIn);
+  if num_NL>NumVariations-2 then
+    connect(fixed[end].fluidPortOut, sleepyStiffNetwork.fluidPortIn);
+  end if;
   connect(sleepyStiffNetwork.fluidPortOut, volume[end].fluidPortIn);
 
   annotation (

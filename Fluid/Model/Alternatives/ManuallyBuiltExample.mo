@@ -240,5 +240,5 @@ equation
           extent={{-178,-64},{-108,-82}},
           textColor={0,0,0},
           textString="additional \"small\" system")}),                   Icon(
-        coordinateSystem(extent={{-100,-100},{100,100}})));
+        coordinateSystem(extent={{-100,-100},{100,100}})),experiment(StopTime=1, __Dymola_Algorithm="Dassl"));
 end ManuallyBuiltExample;
