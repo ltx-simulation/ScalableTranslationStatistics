@@ -18,7 +18,7 @@ model ScaleTranslationStatistics
 
   // Parametrization of single mass spring subsystem
   parameter Real delta_p_stiff(final min=0, start=0)=1e9 "Stiffness of mass-flow pressure relationship";
-  parameter Integer sleeping_time = 5 "time in [ms], the model will sleep in each time integration step to imitate longer simulation times ";
+  parameter Integer sleeping_time = 0 "time in [ms], the model will sleep in each time integration step to imitate longer simulation times ";
   parameter Integer compilerType = 1 "1 = Visual Studio;  2= GCC";
 
   // Inputs and Outputs
@@ -34,9 +34,9 @@ model ScaleTranslationStatistics
             {10,50}})));
 
   // Fixations / Boundaries
-  Components.Boundaries.Boundary_Pressure fixed[num_NL-NumVariations+2](each use_input=true) if num_NL>NumVariations "fixation for surplus nonlinear spring chains" annotation (Placement(transformation(extent={{-90,30},
+  Components.Boundaries.Boundary_Pressure fixed[max(1,num_NL-NumVariations+1)](each use_input=true) "fixation for surplus nonlinear tubes-systems" annotation (Placement(transformation(extent={{-90,30},
             {-70,50}})));
-  Components.Boundaries.Boundary_MassFlow fixed_linear[num_Lin](each use_input=true) "fixation for linear spring chains" annotation (Placement(transformation(extent={{90,30},
+  Components.Boundaries.Boundary_MassFlow fixed_linear[num_Lin](each use_input=true) "fixation for linear tubes-systems" annotation (Placement(transformation(extent={{90,30},
             {70,50}})));
 
   // Tubes
@@ -54,7 +54,7 @@ model ScaleTranslationStatistics
             {22,58}})));
 
   // dummy input for massflow and pressure boundaries, if there are not enough input signals
-  Modelica.Blocks.Sources.Sine sine[num_Lin+NumSurplusNLEquations+2](each f=2);
+  Modelica.Blocks.Sources.Sine sine[num_Lin+NumSurplusNLEquations+1](each f=2);
   Components.LinearComponents.PressureLossTube_Linear_Sleepy sleepyStiffNetwork(delta_p_nom=delta_p_stiff, compiler_type = compilerType, waiting_time=sleeping_time)
                                                                                                                                                                     annotation (Placement(transformation(extent={{-48,-62},
             {-24,-38}})));
@@ -107,13 +107,13 @@ equation
   end if;
 
   // apply the input signals as time dependent pressure boundaries
-  for i in 1:min(num_Inp, num_NL-NumVariations+1) loop
+  for i in 1:min(num_Inp, NumSurplusNLEquations+1) loop
     connect(inputs[i], fixed[i].p);
   end for;
 
   // if there are more boundaries than input signals, feed the boundaries with dummy sine curve
-  for i in 1:NumSurplusNLEquations-num_Inp+2 loop
-    connect(sine[i+num_Lin].y, fixed[i+min(num_Inp, num_NL-NumVariations+1)].p);
+  for i in 1:NumSurplusNLEquations-num_Inp+1 loop
+    connect(sine[i+num_Lin].y, fixed[i+min(num_Inp, num_NL-NumVariations)].p);
   end for;
 
   // feed the mass_flow boundaries for the linear systems with dummy sine curves
