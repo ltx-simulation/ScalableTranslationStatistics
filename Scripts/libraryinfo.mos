@@ -4,10 +4,9 @@ LibraryInfoMenuSeparator(
 
 LibraryInfoMenuCommand(
   category = "libraries",
-  text = "Scalable Translation Statistics",
+  text = "Scalable Translation Statistics 2.0.0",
   reference = "ScalableTranslationStatistics",
   version = "2.0.0",
   isModel = true,
   description = "library to scale translation statistics",
-  ModelicaVersion = "4.0.0",
   pos = 214);
