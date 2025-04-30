@@ -1,10 +1,10 @@
-package ScalableTranslationStatistics "Scalable Translation Statistics - Version 1.2.0"
+package ScalableTranslationStatistics "Scalable Translation Statistics - Version 2.0.0"
 
 
 
 
   annotation (
-          version="1.2.0",
+          version="2.0.0",
           uses(Modelica(version="4.0.0")),
 
 Documentation(info="<html>
