@@ -1,5 +1,5 @@
 #include <unistd.h>
 
-int msleep(unsigned int tms) {
-  return usleep(tms * 1000);
+void msleep(unsigned int tms) {
+  usleep(tms);
 }
