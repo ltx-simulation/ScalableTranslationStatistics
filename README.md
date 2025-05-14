@@ -25,7 +25,7 @@ Release Notes:
 
 - adding scalable models from the physical domain of fluid-mechanics to the library. Therefore the library is split into the two major subpackages "Mechanics" and "Fluid".
 - A scalable fluid model can look like this:
-- ![Principle structure of the scalable fluid model](https://github.com/ltx-simulation/ScalableTranslationStatistics/blob/dev/Resources/Example_FluidModel.png)
+- ![Principle structure of the scalable fluid model](https://github.com/ltx-simulation/ScalableTranslationStatistics/blob/main/Resources/Example_FluidModel.png)
 
 
 
