@@ -1,3 +1,0 @@
-within ScalableTranslationStatistics.Fluid.Components;
-package NonlinearComponents
-end NonlinearComponents;

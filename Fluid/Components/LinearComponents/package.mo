@@ -1,3 +1,0 @@
-within ScalableTranslationStatistics.Fluid.Components;
-package LinearComponents
-end LinearComponents;
