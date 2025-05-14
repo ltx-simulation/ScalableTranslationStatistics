@@ -1,0 +1,12 @@
+LibraryInfoMenuSeparator(
+  category="libraries",
+  pos=210);
+
+LibraryInfoMenuCommand(
+  category = "libraries",
+  text = "ScalableTranslationStatistics",
+  reference = "ScalableTranslationStatistics",
+  version = "2.0.0",
+  isModel = true,
+  description = "library to scale translation statistics",
+  pos = 214);
