@@ -2,7 +2,8 @@ within ScalableTranslationStatistics;
 package UsersGuide "Users Guide"
   extends Modelica.Icons.Information;
 
-  annotation (Documentation(info="<html>
+  annotation (DocumentationClass=true,
+              Documentation(info="<html>
 <p>This <b>Modelica</b> package contains - as a central part of the package - a generic model, with translation statistics (characteristics of the model given in Dymola&lsquo;s translation statistics), that can be set by parameters as shown in the following picture:</p>
 <p><br><img src=\"modelica://ScalableTranslationStatistics/Resources/Statistics_Match.png\"/> </p>
 <p>This is done in a mechanical example and in a fluid example. </p>
