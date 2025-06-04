@@ -19,7 +19,7 @@ The library is developed in Dymola but also works in other Modelica tools (teste
 
 ## Current release
 
-1.2.0 
+2.0.0 
 
 Release Notes:
 
